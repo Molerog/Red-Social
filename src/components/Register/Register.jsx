@@ -1,26 +1,34 @@
-import { Form, Input, Button, notification, Space } from "antd";
-import { useDispatch } from "react-redux";
-import { register } from "../../features/auth/authSlice";
+import { Form, Input, Button, notification } from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import { register, reset } from "../../features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const Register = () => {
-  const openNotificationWithIcon = (type) => {
-    notification[type]({
-      message: "Registro realizado con éxito!",
-      description:
-        "This is the content of the notification. This is the content of the notification. This is the content of the notification.",
-    });
-  };
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { isSuccess, isError, message } = useSelector((state) => state.auth);
+
+  useEffect(() => {  
+    if (isSuccess) {
+      notification.success({
+        message: "Success",
+        description: message,
+      });
+      setTimeout(() => {
+        navigate("/login");
+      }, 3000);
+    }
+    if (isError) {
+      notification.error({ message: "Error", description: message });
+    }
+    dispatch(reset());
+  }, [isSuccess, isError, message]);
+
   const onFinish = (values) => {
-    console.log(values)
-    dispatch(register(values));
-    openNotificationWithIcon("success");
-    setTimeout(() => {
-      navigate("/login");
-    }, 3000);
+    dispatch(register(values));   
   };
+
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
