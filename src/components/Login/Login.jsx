@@ -1,9 +1,13 @@
 import React from 'react'
 import { Form, Input, Button } from 'antd';
+import { useDispatch } from 'react-redux';
+import { login } from '../../features/auth/authSlice';
+
 
 const Login = () => {
+    const dispatch = useDispatch()
     const onFinish = (values)=>{
-                
+               dispatch(login(values)) 
     } 
     const onFinishFailed = (errorInfo) => {
         console.log("Failed:", errorInfo);
