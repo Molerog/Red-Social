@@ -1,11 +1,26 @@
-import React from 'react'
-import { Form, Input, Button } from 'antd';
-import { useDispatch } from 'react-redux';
-import { login } from '../../features/auth/authSlice';
-
+import React, { useEffect } from 'react'
+import { Form, Input, Button, notification } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
+import { login, reset } from '../../features/auth/authSlice';
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+    const navigate = useNavigate();
+    const {isError, isSuccess, message } = useSelector((state) => state.auth)
     const dispatch = useDispatch()
+
+    useEffect(()=>{
+        if(isError){
+            notification.error({message: 'Error', description:message})
+        }
+        if (isSuccess){
+            notification.success({message:'Success', description:message})
+            setTimeout(() => {
+                navigate('/profile')
+            }, 3000);
+        }
+        dispatch(reset())
+    }, [isError, isSuccess, message])
     const onFinish = (values)=>{
                dispatch(login(values)) 
     } 
