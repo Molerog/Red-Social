@@ -1,10 +1,27 @@
-import { Form, Input, Button } from "antd";
+import { Form, Input, Button, notification, Space } from "antd";
+import {useDispatch} from 'react-redux';
+import {register} from '../../features/auth/authSlice';
+import {useNavigate} from "react-router-dom";
+
 
 
 const Register = () => {
-       
+
+    const openNotificationWithIcon = (type) => {
+        notification[type]({
+          message: 'Registro realizado con éxito!',
+          description:
+            'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
+        });
+      };
+    const navigate = useNavigate();   
+    const dispatch = useDispatch()
     const onFinish = (values)=>{
-        console.log(values)        
+             dispatch(register(values))
+             openNotificationWithIcon('success')
+             setTimeout(() => {
+                navigate('/login');
+             }, 3000);
     }
     const onFinishFailed = (errorInfo) => {
         console.log("Failed:", errorInfo);

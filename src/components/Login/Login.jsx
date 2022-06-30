@@ -3,7 +3,7 @@ import { Form, Input, Button } from 'antd';
 
 const Login = () => {
     const onFinish = (values)=>{
-        console.log(values)        
+                
     } 
     const onFinishFailed = (errorInfo) => {
         console.log("Failed:", errorInfo);
