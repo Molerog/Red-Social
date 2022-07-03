@@ -6,6 +6,8 @@ const initialState = {
     posts: [],
     isLoading: false,
     post:{},
+    isPending: false,
+    
 };
 
 export const getAll = createAsyncThunk('post/getAll', async ()=>{
@@ -16,12 +18,12 @@ export const getAll = createAsyncThunk('post/getAll', async ()=>{
     }
 });
 
-export const getById = createAsyncThunk('post/getById', async (_id)=>{
+export const getById = createAsyncThunk('post/getById', async (_id, thunkAPI)=>{
     try {
        
         return await postsService.getById(_id);
     } catch (error) {
-        console.error(error)
+        const message = error.response.data.message
     }
 });
 
