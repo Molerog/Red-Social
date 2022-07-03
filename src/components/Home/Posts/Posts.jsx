@@ -4,6 +4,8 @@ import { useEffect } from "react";
 import Post from "./Post/Post";
 import { LoadingOutlined } from "@ant-design/icons";
 
+
+
 const Posts = () => {
   const { isLoading } = useSelector((state) => state.posts);
   const dispatch = useDispatch();

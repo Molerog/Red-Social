@@ -8,6 +8,7 @@ import Header from './components/Header/Header';
 import Profile from './components/Profile/Profile';
 import Home from './components/Home/Home';
 import PostDetail from './components/Home/Posts/PostDetail/PostDetail';
+import Search from './components/Search/Search';
 
 
 
@@ -22,7 +23,8 @@ function App() {
       <Route path= '/login' element={<Login />} />
       <Route path= '/profile' element={<Profile />} />
       <Route path= '/home' element={<Home />} />
-      <Route path= '/posts/id/_id' element={<PostDetail />} />
+      <Route path= '/posts/id/:_id' element={<PostDetail />} />
+      <Route path= '/search/:title' element={<Search />} />
       </Routes>
       </BrowserRouter>
     </div>
