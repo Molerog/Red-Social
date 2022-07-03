@@ -14,10 +14,8 @@ const Login = () => {
             notification.error({message: 'Error', description:message})
         }
         if (isSuccess){
-            notification.success({message:'Success', description:message})
-            setTimeout(() => {
+            notification.success({message:'Success', description:message})          
                 navigate('/profile')
-            }, 3000);
         }
         dispatch(reset())
     }, [isError, isSuccess, message])

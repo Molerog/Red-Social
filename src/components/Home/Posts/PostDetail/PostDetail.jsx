@@ -8,6 +8,11 @@ const PostDetail = () => {
     const {_id} = useParams();
     const dispatch = useDispatch();
     const {post} = useSelector((state)=> state.posts)
+
+    const comments = post.comments?.map(comment => {
+     
+      return <li key = {comment._id}>{comment.body}</li>
+    })
   
   console.log(post)
     useEffect(()=>{
@@ -18,7 +23,7 @@ const PostDetail = () => {
         <h1>PostDetail</h1>
         <p>{post.title}</p>
         <p>{post.body}</p>
-        {/* <p>{comments}</p> */}
+        <ul>{comments}</ul>
         </div>
   )
 }
