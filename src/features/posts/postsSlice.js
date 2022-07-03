@@ -3,11 +3,12 @@ import postsService from './postsService';
 
 
 const initialState = {
-    posts: []
+    posts: [],
+    isLoading: false,
+    post:{}
 };
 
 export const getAll = createAsyncThunk('post/getAll', async ()=>{
-    console.log('soy el slice')
     try {
         return await postsService.getAll();
     } catch (error) {
@@ -15,16 +16,37 @@ export const getAll = createAsyncThunk('post/getAll', async ()=>{
     }
 });
 
+export const getById = createAsyncThunk('post/getById', async (_id)=>{
+    try {
+        return await postsService.getById(_id);
+    } catch (error) {
+        console.error(error)
+    }
+})
+
 export const postsSlice = createSlice({
     name: 'posts',
     initialState,
-    reducers:{},
+    reducers:{
+        reset: (state) =>{
+            state.isLoading = false;
+        }
+    },
     extraReducers: (builder) =>{
         builder
         .addCase(getAll.fulfilled,(state,action)=>{
             state.posts = action.payload
+        });
+        builder
+        .addCase(getAll.pending,(state) =>{
+            state.isLoading=true;
+        });
+        builder
+        .addCase(getById.fulfilled,(state,action)=>{
+            state.post= action.payload
         })
     }
 })
 
+export const {reset} = postsSlice.actions;
 export default postsSlice.reducer
