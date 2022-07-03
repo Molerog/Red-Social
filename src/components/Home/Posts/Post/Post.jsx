@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 
 const Post = () => {
-  const {posts} = useSelector((state) => state.posts);
+  const {posts}= useSelector((state) => state.posts);
   const post = posts.map((post)=>{
     return (
       <div className='post' key= {post._id}>

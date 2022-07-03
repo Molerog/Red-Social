@@ -9,6 +9,10 @@ const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
+
+  const onSearch = (e) =>{
+   navigate('/search/' + e)
+  }
   const onLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
@@ -36,7 +40,7 @@ const Header = () => {
               allowClear
               enterButton="Search"
               size="large"
-              // onSearch={onSearch}
+              onSearch={onSearch}
               style={{
                 width: 304,
               }}
