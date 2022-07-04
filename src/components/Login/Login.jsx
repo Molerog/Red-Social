@@ -20,6 +20,7 @@ const Login = () => {
         dispatch(reset())
     }, [isError, isSuccess, message])
     const onFinish = (values)=>{
+        console.log(values)
                dispatch(login(values)) 
     } 
     const onFinishFailed = (errorInfo) => {

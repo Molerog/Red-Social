@@ -7,14 +7,13 @@ import { getById } from '../../../../features/posts/postsSlice'
 const PostDetail = () => {
     const {_id} = useParams();
     const dispatch = useDispatch();
-    const {post} = useSelector((state)=> state.posts)
-
+    const {post} = useSelector((state)=> state.posts) 
     const comments = post.comments?.map(comment => {
+     
      
       return <li key = {comment._id}>{comment.body}</li>
     })
   
-  console.log(post)
     useEffect(()=>{
       dispatch(getById(_id));
     },[]);

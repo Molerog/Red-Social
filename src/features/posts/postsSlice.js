@@ -23,7 +23,7 @@ export const getById = createAsyncThunk('post/getById', async (_id, thunkAPI)=>{
        
         return await postsService.getById(_id);
     } catch (error) {
-        const message = error.response.data.message
+        
     }
 });
 
@@ -31,6 +31,14 @@ export const getPostByTitle = createAsyncThunk('posts/getPostsByName', async (po
     try {
         return await postsService.getPostByTitle(postTitle);
     } catch (error) {
+        console.error(error)
+    }
+});
+
+export const createPost = createAsyncThunk('posts/createPost', async (data) =>{
+    try{
+        return await postsService.createPost(data);
+    } catch (error){
         console.error(error)
     }
 })
