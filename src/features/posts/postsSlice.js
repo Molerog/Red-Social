@@ -4,10 +4,7 @@ import postsService from './postsService';
 
 const initialState = {
     posts: [],
-    isLoading: false,
-    post:{},
-    isPending: false,
-    
+    post:{},    
 };
 
 export const getAll = createAsyncThunk('post/getAll', async ()=>{
@@ -66,8 +63,10 @@ export const postsSlice = createSlice({
         });
         builder
         .addCase(getPostByTitle.fulfilled, (state,action) =>{
-            state.posts = action.payload
-            
+            state.posts = action.payload            
+        })
+        .addCase(createPost.fulfilled, (state,action) =>{
+            state.posts = [action.payload, ...state.posts]
         })
     }
 })

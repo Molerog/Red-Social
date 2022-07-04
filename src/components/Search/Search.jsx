@@ -8,7 +8,6 @@ const Search = () => {
   const { title } = useParams();
   const dispatch = useDispatch()
   useEffect(() => {
-    console.log(title, 'soy el UseEffect de Search')
     dispatch(getPostByTitle(title))
   },[title])
   return (

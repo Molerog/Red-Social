@@ -19,17 +19,17 @@ const getById = async (_id) => {
 
 const getPostByTitle = async (title) => {
   const res = await axios.get(API_URL + "/posts/search/" + title);
-  console.log(res.data, "Soy el Service");
   return res.data;
 };
 
 const createPost = async (data) => {
   const user = JSON.parse(localStorage.getItem("user"));
-  await axios.post(API_URL + "/posts/", data, {
+  const res = await axios.post(API_URL + "/posts/", data, {
     headers: {
       authorization: user?.token,
-    },    
+    },        
   });
+  return res.data
 };
 
 const postsService = {

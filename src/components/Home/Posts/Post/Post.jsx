@@ -23,12 +23,11 @@ const Post = () => {
   const { posts } = useSelector((state) => state.posts);
   const dispatch = useDispatch();
 
-  //Aplicar useEffect en el futuro
-  const onFinish = (values) => {
+  
+  const onFinish = async (values) => {
     if (values != null){
       setVisible(false)
-      dispatch(createPost(values))
-      // Form.Item.props.form.resetFields()
+      await dispatch(createPost(values))
     }
   };
   const post = posts.map((post) => {
