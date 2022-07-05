@@ -38,6 +38,14 @@ export const createPost = createAsyncThunk('posts/createPost', async (data) =>{
     } catch (error){
         console.error(error)
     }
+});
+
+export const like = createAsyncThunk('posts/like', async (_id) =>{
+    try {
+        return await postsService.like(_id);
+    } catch (error) {
+        console.error(error);
+    }
 })
 
 export const postsSlice = createSlice({
@@ -68,8 +76,17 @@ export const postsSlice = createSlice({
         .addCase(createPost.fulfilled, (state,action) =>{
             state.posts = [action.payload, ...state.posts]
         })
+        .addCase(like.fulfilled, (state,action)=>{
+            const posts = state.posts.map(post =>{
+                if (post._id === action.payload._id) {
+                    post = action.payload
+                }
+                return post
+            })
+            state.posts = posts
+        });
     }
-})
+});
 
 export const {reset} = postsSlice.actions;
 export default postsSlice.reducer

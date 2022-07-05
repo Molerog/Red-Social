@@ -43,11 +43,10 @@ const PostDetail = () => {
   const [value, setValue] = useState("");
   const handleSubmit = async () => {
     if (!value) return;
-    let postId = _id
-    let body = value
-    let data = { body, postId }; 
+    let data = { body:value, postId:_id }; 
     setSubmitting(true);
     await dispatch(createComment(data))
+    dispatch(getById(_id));
     setTimeout(() => {
       setSubmitting(false);
       setValue("");
@@ -107,14 +106,6 @@ const PostDetail = () => {
           }
         />
       </div>
-
-      {/* content={
-          <p>
-            We supply a series of design principles, practical patterns and high
-            quality design resources (Sketch and Axure), to help people create
-            their product prototypes beautifully and efficiently.
-          </p>
-        } */}
     </>
   );
 };

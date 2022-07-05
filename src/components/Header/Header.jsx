@@ -36,9 +36,9 @@ const Header = () => {
               <Link to="/home">Home</Link>
             </span>
             <Search
-              placeholder="input search text"
-              allowClear
-              enterButton="Search"
+              placeholder="Título del Post"
+              // allowClear
+              enterButton="Buscar"
               size="large"
               onSearch={onSearch}
               style={{

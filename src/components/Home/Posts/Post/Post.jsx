@@ -1,85 +1,35 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { Button, Modal, Form, Input} from "antd";
-import React, { useState } from "react";
+import { HeartOutlined, HeartFilled } from "@ant-design/icons";
 import './Post.scss'
-import { createPost } from "../../../../features/posts/postsSlice";
-
-const layout = {
-  labelCol: {
-    span: 8,
-  },
-  wrapperCol: {
-    span: 16,
-  },
-};
-
-const validateMessages = {
-  required: '${label} es requerido',
-};
+import { like } from "../../../../features/posts/postsSlice";
 
 const Post = () => {
-  const [visible, setVisible] = useState(false);
+ 
   const { posts } = useSelector((state) => state.posts);
-  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth);
+  const dispatch = useDispatch()
 
-  
-  const onFinish = async (values) => {
-    if (values != null){
-      setVisible(false)
-      await dispatch(createPost(values))
-    }
-  };
-  const post = posts.map((post) => {
+  const post = posts?.map((post) => {
+    const isAlreadyLiked = posts.likes?.include(user?.user._id)
     return (
       <div className="post" key={post._id}>
         <Link to={"/posts/id/" + post._id}>
-          <p className='prueba'>{post.title}</p>
+          <p>{post.title}</p>
         </Link>
+        <span className='like'> Like : {post.likes?.length}</span>
+        {isAlreadyLiked ? (
+          <HeartFilled onClick = {() => console.log('dislike')} />
+        ) : (
+          <HeartOutlined onClick= {() => dispatch(like(post._id))} />
+        )
+      }
       </div>
     );
   });
   return (
     <>
       <div>{post}</div>
-      <>
-        <Button type="primary" onClick={() => setVisible(true)}>
-          Crear un Post
-        </Button>
-        <Modal 
-          title="Nuevo Post"
-          visible={visible}
-          width={1000}
-          onCancel={() => setVisible(false)}
-          footer={null}
-        >
-          <Form {...layout} name="nest-messages" onFinish={onFinish} validateMessages={validateMessages}>
-            <Form.Item
-        name={'title'}
-        label="Título"
-        rules={[
-          {
-            required: true,
-          },
-        ]}
-      >
-        <Input />
-      </Form.Item>
-      <Form.Item name={['body']} label="Texto del post"  rules={[
-          {
-            required: true,
-          },
-        ]}>
-        <Input.TextArea />
-      </Form.Item>
-      <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
-        <Button type="primary" htmlType="submit">
-          Publicar
-        </Button>
-      </Form.Item>
-      </Form>
-        </Modal>
-      </>
     </>
   );
 };

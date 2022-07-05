@@ -3,6 +3,7 @@ import { getAll, reset } from "../../../features/posts/postsSlice";
 import { useEffect } from "react";
 import Post from "./Post/Post";
 import { LoadingOutlined } from "@ant-design/icons";
+import CreatePost from "../../CreatePost/CreatePost";
 
 
 
@@ -36,6 +37,7 @@ const Posts = () => {
     <div>
       <h1>Posts</h1>
       <Post />
+      <CreatePost/>
     </div>
   );
 };
