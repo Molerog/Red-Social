@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { HeartOutlined, HeartFilled } from "@ant-design/icons";
-import './Post.scss'
-import { like } from "../../../../features/posts/postsSlice";
+import { dislike, like } from "../../../../features/posts/postsSlice";
+import { useEffect } from "react";
 
 const Post = () => {
  
@@ -10,16 +10,18 @@ const Post = () => {
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch()
 
+
+
   const post = posts?.map((post) => {
-    const isAlreadyLiked = posts.likes?.include(user?.user._id)
+    const isAlreadyLiked = post.likes?.includes(user?.user._id)
     return (
       <div className="post" key={post._id}>
         <Link to={"/posts/id/" + post._id}>
           <p>{post.title}</p>
         </Link>
-        <span className='like'> Like : {post.likes?.length}</span>
+        <span className='like'> Likes : {post.likes?.length}</span>
         {isAlreadyLiked ? (
-          <HeartFilled onClick = {() => console.log('dislike')} />
+          <HeartFilled onClick = {() => dispatch(dislike(post._id))} />
         ) : (
           <HeartOutlined onClick= {() => dispatch(like(post._id))} />
         )

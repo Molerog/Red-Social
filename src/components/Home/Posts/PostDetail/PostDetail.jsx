@@ -2,9 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getById } from "../../../../features/posts/postsSlice";
-// import { DislikeFilled, DislikeOutlined, LikeFilled, LikeOutlined } from '@ant-design/icons';
-import { Avatar, Comment, Tooltip, Form, Input, Button } from "antd";
-
+import { Avatar, Comment, Form, Input, Button } from "antd";
 import React, { useState } from "react";
 import moment from "moment";
 import createComment from "../../../../features/comments/commentsSlice";
