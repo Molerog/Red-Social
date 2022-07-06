@@ -21,6 +21,14 @@ export const follow = createAsyncThunk('users/follow', async(_id)=>{
     }
 });
 
+export const unfollow = createAsyncThunk('users/unfollow', async(_id)=>{
+    try {
+       return await userService.unfollow(_id);
+    } catch (error) {
+        console.error(error);
+    }
+});
+
 
 export const usersSlice = createSlice({
     name: 'users',
@@ -38,6 +46,15 @@ export const usersSlice = createSlice({
             state.users = action.payload
         })
         .addCase(follow.fulfilled, (state,action)=>{
+            const users = state.users.map((user)=>{
+                if (user._id === action.payload._id){
+                    user = action.payload
+                }
+                return user;
+            })
+            state.users = users;
+        })
+        .addCase(unfollow.fulfilled, (state,action)=>{
             const users = state.users.map((user)=>{
                 if (user._id === action.payload._id){
                     user = action.payload

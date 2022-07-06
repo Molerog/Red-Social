@@ -2,13 +2,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { HeartOutlined, HeartFilled } from "@ant-design/icons";
 import { dislike, like } from "../../../../features/posts/postsSlice";
-import { useEffect } from "react";
+
 
 const Post = () => {
  
   const { posts } = useSelector((state) => state.posts);
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch()
+
 
 
 

@@ -20,7 +20,7 @@ const follow = async (_id) =>{
 
 const unfollow = async (_id) =>{
     const user = JSON.parse(localStorage.getItem("user"));
-    const res = await axios.put(API_URL + '/users/unfollow/'+ _id,{
+    const res = await axios.put(API_URL + '/users/unfollow/'+ _id,{},{
        
         headers:{
             authorization: user?.token

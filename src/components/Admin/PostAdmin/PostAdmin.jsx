@@ -1,5 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { destroy } from "../../../features/posts/postsSlice";
+import { Button } from 'antd';
+
 
 
 
@@ -11,7 +13,7 @@ const PostAdmin = () => {
         return (
             <div key={post._id}>
                 <p>{post.title}</p>
-                <button onClick={() => dispatch(destroy(post._id))}>X</button>
+                <Button type="danger" onClick ={() => dispatch(destroy(post._id))}>Eliminar Post</Button>               
             </div>
         )
     })
