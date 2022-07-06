@@ -4,7 +4,6 @@ const API_URL = 'http://localhost:8080';
 
 const register = async (userData) =>{
     const res = await axios.post(API_URL + '/users', userData);
-    console.log(res.data)
     return res.data
 };
 
@@ -29,21 +28,21 @@ const logout = async () => {
     return res.data;
 }
 
-const getInfo = async () =>{
-    const user = JSON.parse(localStorage.getItem('user'));
-    const res = await axios.get(API_URL + '/users/user', {
-        headers:{
-            authorization: user?.token
-        }
-    })
-    return res.data
-}
+// const getInfo = async () =>{
+//     const user = JSON.parse(localStorage.getItem('user'));
+//     const res = await axios.get(API_URL + '/users/user', {
+//         headers:{
+//             authorization: user?.token
+//         }
+//     })
+//     return res.data
+// }
 
 const authService ={
     register,
     login,
     logout,
-    getInfo
+    // getInfo
 }
 
 export default authService;

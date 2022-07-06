@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Button, Modal, Form, Input } from "antd";
-import { destroy } from "../../features/posts/postsSlice"
+import { destroy, editPost, getById } from "../../features/posts/postsSlice";
 
 const layout = {
   labelCol: {
@@ -18,24 +18,30 @@ const validateMessages = {
 
 const EditPost = () => {
   const [visible, setVisible] = useState(false);
-  const { info } = useSelector((state) => state.auth);
+  const { info, post } = useSelector((state) => state.posts);
+
+  const getId = (_id) => {
+    setVisible(true);
+    dispatch(getById(_id));
+  };
 
   const onFinish = async (values) => {
     if (values != null) {
-      console.log(values);
+      const data = {...values, _id:post._id}
       setVisible(false);
-      //   await dispatch(createPost(values))
+      await dispatch(editPost(data));
     }
   };
 
   const dispatch = useDispatch();
+
   const destroyPost = (value) => {
     dispatch(destroy(value));
   };
- 
+
   const editButton = info.postIds?.map((e) => {
     return (
-      <div key= {e._id}>
+      <div key={e._id}>
         <span>{e.title}</span>
         <Button
           type="primary"
@@ -45,11 +51,21 @@ const EditPost = () => {
         >
           Borrar Post
         </Button>
-        <Button type="primary" onClick={() => setVisible(true)}>
+        <Button
+          type="primary"
+          onClick={() => {
+            getId(e._id);
+          }}
+        >
           Editar Post
         </Button>
-        <Modal
-          title="Nuevo Post"
+        
+      </div>
+    );
+  });
+  return <>{editButton}
+  <Modal
+          title='titulo'
           visible={visible}
           width={1000}
           onCancel={() => setVisible(false)}
@@ -90,10 +106,7 @@ const EditPost = () => {
             </Form.Item>
           </Form>
         </Modal>
-      </div>
-    );
-  });
-  return <>{editButton}</>;
+  </>;
 };
 
 export default EditPost;

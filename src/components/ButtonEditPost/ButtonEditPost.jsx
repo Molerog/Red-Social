@@ -18,13 +18,10 @@ const validateMessages = {
 const EditPost = () => {
   const [visible, setVisible] = useState(false);
   const { info } = useSelector((state) => state.auth);
-  // const dispatch = useDispatch();
 
   const onFinish = async (values) => {
     if (values != null) {
-      console.log(values);
       setVisible(false);
-      //   await dispatch(createPost(values))
     }
   };
   const editButton = info.postIds?.map((e) => {

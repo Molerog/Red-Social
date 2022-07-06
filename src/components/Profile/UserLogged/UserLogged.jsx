@@ -1,7 +1,8 @@
 import { useDispatch, useSelector} from 'react-redux';
 import { useEffect } from "react";
-import { getInfo } from '../../../features/auth/authSlice';
+
 import InfoUserLogged from '../UserLogged/InfoUserLogged.jsx/InfoUserLogged'
+import { getInfo } from '../../../features/posts/postsSlice';
 
 const UserLogged = () => {
     const {posts} = useSelector((state => state.posts))
