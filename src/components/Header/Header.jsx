@@ -1,18 +1,17 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../features/auth/authSlice";
-import { Input} from "antd";
+import { Input } from "antd";
 const { Search } = Input;
-
 
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
 
-  const onSearch = (e) =>{
-   navigate('/search/' + e)
-  }
+  const onSearch = (e) => {
+    navigate("/search/" + e);
+  };
   const onLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
@@ -45,6 +44,15 @@ const Header = () => {
                 width: 304,
               }}
             />
+            <span>
+              {user.user.role === "admin" ? (
+                <span>
+                  <Link to="/admin">Admin</Link>
+                </span>
+              ) : (
+                ""
+              )}
+            </span>
           </>
         ) : (
           <>
