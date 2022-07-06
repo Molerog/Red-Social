@@ -29,6 +29,14 @@ export const unfollow = createAsyncThunk('users/unfollow', async(_id)=>{
     }
 });
 
+export const getUsersByName = createAsyncThunk('users/byName', async(name)=>{
+    try {
+       return await userService.getUsersByName(name);
+    } catch (error) {
+        console.error(error);
+    }
+});
+
 
 export const usersSlice = createSlice({
     name: 'users',
@@ -62,6 +70,9 @@ export const usersSlice = createSlice({
                 return user;
             })
             state.users = users;
+        })
+        .addCase(getUsersByName.fulfilled, (state,action) =>{
+            state.users=action.payload
         })
     }
 });

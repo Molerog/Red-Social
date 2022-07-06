@@ -25,7 +25,7 @@ export const getById = createAsyncThunk(
 );
 
 export const getPostByTitle = createAsyncThunk(
-  "posts/getPostsByName",
+  "posts/getPostsByTitle",
   async (postTitle) => {
     try {
       return await postsService.getPostByTitle(postTitle);

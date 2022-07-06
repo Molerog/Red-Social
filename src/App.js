@@ -12,6 +12,7 @@ import Search from './components/Search/Search';
 import Admin from './components/Admin/Admin';
 import Users from './components/Users/Users';
 import Header from './components/Header/Header';
+import SearchUser from './components/SearchUser/SearchUser';
 
 
 
@@ -30,6 +31,7 @@ function App() {
       <Route path= '/home' element={<Home />} />
       <Route path= '/posts/id/:_id' element={<PostDetail />} />
       <Route path= '/search/:title' element={<Search />} />
+      <Route path= 'users/searchByName/:name' element={<SearchUser />} />
       <Route path= '/admin' element={<Admin />} />
       <Route path= '/users' element= {<Users />} />
       </Routes>
