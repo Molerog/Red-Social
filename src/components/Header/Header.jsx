@@ -32,7 +32,10 @@ const Header = () => {
               <Link to="/profile">{user.user.name} </Link>
             </span>
             <span>
-              <Link to="/home">Home</Link>
+              <Link to="/home">Feed</Link>
+            </span>
+            <span>
+              <Link to="/users">Usuarios</Link>
             </span>
             <Search
               placeholder="Título del Post"
@@ -44,7 +47,7 @@ const Header = () => {
                 width: 304,
               }}
             />
-            <span>
+            <div>
               {user.user.role === "admin" ? (
                 <span>
                   <Link to="/admin">Admin</Link>
@@ -52,7 +55,7 @@ const Header = () => {
               ) : (
                 ""
               )}
-            </span>
+            </div>
           </>
         ) : (
           <>
