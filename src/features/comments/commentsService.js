@@ -10,8 +10,31 @@ const createComment = async (comment) => {
       },        
 });
 }
+const like = async (_id) => {
+  const user = JSON.parse(localStorage.getItem("user"));
+  const res = await axios.put(API_URL + "/comments/likes/" + _id, {}, {
+    headers: {
+      authorization: user?.token,
+    },        
+});
+console.log('soy el service de vuelta', res.data)
+return res.data
+}
+
+const  dislike = async (_id) => {
+  const user = JSON.parse(localStorage.getItem("user"));
+  const res = await axios.put(API_URL + "/comments/removelikes/"+ _id, {}, {
+    headers: {
+      authorization: user?.token,
+    },        
+});
+console.log(res.data)
+return res.data
+}
 const commentsService = {
-    createComment
+    createComment,
+    like,
+    dislike
   };
 
 export default commentsService;

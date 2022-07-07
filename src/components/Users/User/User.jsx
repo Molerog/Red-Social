@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { Input } from "antd";
 import { Button } from "antd";
-import { follow ,getUsersByName,unfollow } from "../../../features/users/usersSlice";
+import { follow ,getUsers,getUsersByName,resetSearch,unfollow } from "../../../features/users/usersSlice";
 import './Users.scss'
 const { Search } = Input;
 
@@ -35,7 +35,9 @@ const User = () => {
   useEffect(() => {
     if(data.length !== 0){
       dispatch(getUsersByName(data))   
-    }    
+    }  else{
+      dispatch(getUsers())
+    } 
       // eslint-disable-next-line
     },[data])
   

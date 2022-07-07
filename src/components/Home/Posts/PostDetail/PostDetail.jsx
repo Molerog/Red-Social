@@ -1,11 +1,13 @@
 import { useEffect } from "react";
+import { HeartOutlined, HeartFilled } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getById } from "../../../../features/posts/postsSlice";
 import { Avatar, Comment, Form, Input, Button } from "antd";
 import React, { useState } from "react";
 import moment from "moment";
-import createComment from "../../../../features/comments/commentsSlice";
+import { createComment, dislike, like } from "../../../../features/comments/commentsSlice";
+
 
 const { TextArea } = Input;
 const validateMessages = {
@@ -35,8 +37,9 @@ const Editor = ({ onChange, onSubmit, submitting, value }) => (
 const PostDetail = () => {
   const { _id } = useParams();
   const dispatch = useDispatch();
+  const { comments }= useSelector((state) => state.comments);
   const { post } = useSelector((state) => state.posts);
-  // const { user } = useSelector ((state) => state.auth);
+  const { user } = useSelector ((state) => state.auth);
   const [comment, setComment] = useState([]);
   const [submitting, setSubmitting] = useState(false);
   const [value, setValue] = useState("");
@@ -64,33 +67,37 @@ const PostDetail = () => {
   const handleChange = async (e) => {
     setValue(e.target.value);
   };
-
-  console.log(post.comments)
-  // const isAlreadyLiked = post.comments.likes?.includes(user?.user._id);
-  const comments = post.comments?.map((comment) => {
+  
+  const commentUser = post.comments?.map((element) => {
+    const isAlreadyLiked = element.likes?.includes(user?.user._id)
     return (
-      <div key={comment._id}>
+      <div key={element._id}>
         <Comment
-          author={<a>{comment.userId?.name}</a>}
+          author={<a>{element.userId?.name}</a>}
           avatar={
             <Avatar src="https://joeschmoe.io/api/v1/random" alt="Han Solo" />
           }
-          content={<p>{comment.body}</p>}
+          content={<p>{element.body}</p>}
         />
+        {isAlreadyLiked ? (
+          <HeartFilled onClick={() => dispatch(dislike(element._id))} />
+        ): (
+          <HeartOutlined onClick={() => dispatch(like(element._id))} />
+        )}
       </div>
     );
   });
 
   useEffect(() => {
     dispatch(getById(_id));
-  }, []);
+  }, [comments]);
   return (
     <>
       <div>
         <h1>PostDetail</h1>
         <p>{post.title}</p>
         <p>{post.body}</p>
-        <ul>{comments}</ul>
+        <ul>{commentUser}</ul>
       </div>
       <div>
         <Comment
