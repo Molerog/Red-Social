@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { Input } from "antd";
 import { Button } from "antd";
-import { follow ,getUsers,getUsersByName,resetSearch,unfollow } from "../../../features/users/usersSlice";
+import { follow ,getUsers,getUsersByName, unfollow } from "../../../features/users/usersSlice";
 import './Users.scss'
 const { Search } = Input;
 
@@ -22,16 +22,6 @@ const User = () => {
   }
 
 
-  // const url = 'searchByName/';
-  // const navigate = useNavigate();
-  // const onSearch = (name) => { 
-  //   navigate(url + name); 
-  // };
-
-  // const Users = async () => {
-  //   await dispatch(getUsers());
-  // };
-
   useEffect(() => {
     if(data.length !== 0){
       dispatch(getUsersByName(data))   
@@ -44,7 +34,7 @@ const User = () => {
   
   
   const allUsers = users?.map((element) => {
-    
+    console.log(element)
     const isAlreadyFollowed = element.followers?.includes(user?.user?._id);   
     return (
       <ul key={element._id}>
@@ -52,6 +42,7 @@ const User = () => {
         <li>Email de usuario:{element.email}</li>
         <li>Role de usuario:{element.role}</li>
         <li>Followers:{element.followers.length}</li>
+        <li>Following:{element.following.length}</li>
         {isAlreadyFollowed ? (
           <Button type="danger" onClick={() => dispatch(unfollow(element._id))}>
             Dejar de seguir
