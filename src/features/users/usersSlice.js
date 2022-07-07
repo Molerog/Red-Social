@@ -37,6 +37,14 @@ export const getUsersByName = createAsyncThunk("users/byName", async (name) => {
   }
 });
 
+export const deleteUsers = createAsyncThunk("users/delete", async (name) => {
+    try {
+      return await userService.deleteUsers(name);
+    } catch (error) {
+      console.error(error);
+    }
+  });
+
 export const usersSlice = createSlice({
   name: "users",
   initialState,
@@ -75,7 +83,10 @@ export const usersSlice = createSlice({
       })
       .addCase(getUsersByName.fulfilled, (state, action) => {
         state.users = action.payload;
-      });
+      })
+      .addCase(deleteUsers.fulfilled, (state,action)=>{
+        state.users = state.users.filter((user)=>user._id !== action.payload.user._id)
+      })
   },
 });
 

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Input } from "antd";
 import { Button } from "antd";
 import {
+  deleteUsers,
   follow,
   getUsers,
   getUsersByName,
@@ -15,7 +16,7 @@ const { Search } = Input;
 const User = () => {
   const admin = window.location.pathname.includes('admin');
   const [data, setData] = useState("");
-
+console.log('hola')
   const { user } = useSelector((state) => state.auth);
   const { users } = useSelector((state) => state.users);
   const dispatch = useDispatch();
@@ -25,7 +26,8 @@ const User = () => {
   };
 
   const destroyPost = (value) => {
-    dispatch(destroy(value));
+    console.log(value)
+    dispatch(deleteUsers(value));
   };
 
   useEffect(() => {
@@ -39,7 +41,7 @@ const User = () => {
 
 
   const allUsers = users?.map((element) => {
-    console.log(element);
+    console.log(element._id);
     const isAlreadyFollowed = element.followers?.includes(user?.user?._id);
     return (
       <ul key={element._id}>
