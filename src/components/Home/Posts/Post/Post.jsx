@@ -12,7 +12,6 @@ const Post = () => {
   const dispatch = useDispatch();
 
   const post = posts?.map((post) => {
-    console.log(post.imagepath)
     const isAlreadyLiked = post.likes?.includes(user?.user._id);
     return (
       <div className="post" key={post._id}>

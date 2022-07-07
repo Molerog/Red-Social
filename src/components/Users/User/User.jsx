@@ -24,7 +24,6 @@ const User = () => {
   };
 
   const destroyPost = (value) => {
-    console.log(value)
     dispatch(deleteUsers(value));
   };
 
@@ -39,7 +38,6 @@ const User = () => {
 
 
   const allUsers = users?.map((element) => {
-    console.log(element._id);
     const isAlreadyFollowed = element.followers?.includes(user?.user?._id);
     return (
       <ul key={element._id}>

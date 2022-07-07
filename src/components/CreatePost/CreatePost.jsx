@@ -21,7 +21,6 @@ const CreatePost = () => {
   const dispatch = useDispatch();
 
   const onSubmit = async (e) => {
-    console.log(e.target.myFile.files[0])
     e.preventDefault()
     const formData = new FormData();
     if (e.target.myFile.files[0]) formData.set('imagePost', e.target.myFile.files[0]);

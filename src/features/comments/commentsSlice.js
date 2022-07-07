@@ -17,7 +17,7 @@ export const createComment = createAsyncThunk(
 );
 
 export const like = createAsyncThunk("comments/like", async (_id) => {
-  console.log(_id);
+ 
   try {
     return await commentsService.like(_id);
   } catch (error) {

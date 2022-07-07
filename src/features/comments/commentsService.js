@@ -17,7 +17,7 @@ const like = async (_id) => {
       authorization: user?.token,
     },        
 });
-console.log('soy el service de vuelta', res.data)
+
 return res.data
 }
 
@@ -28,7 +28,7 @@ const  dislike = async (_id) => {
       authorization: user?.token,
     },        
 });
-console.log(res.data)
+
 return res.data
 }
 const commentsService = {
