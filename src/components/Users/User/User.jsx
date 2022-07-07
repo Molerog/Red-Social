@@ -1,13 +1,27 @@
 import { useDispatch, useSelector } from "react-redux";
-// import { useEffect } from "react";
-// import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Input } from "antd";
 import { Button } from "antd";
-import { follow ,unfollow } from "../../../features/users/usersSlice";
+import { follow ,getUsersByName,unfollow } from "../../../features/users/usersSlice";
+import './Users.scss'
+const { Search } = Input;
+
 
 const User = () => {
+
+  const [data, setData] = useState('');
+   
   const { user } = useSelector((state) => state.auth);
   const { users } = useSelector((state) => state.users);
   const dispatch = useDispatch();
+
+  
+ 
+  const onChange = (e) =>{
+     setData(e.target.value)
+  }
+
+
   // const url = 'searchByName/';
   // const navigate = useNavigate();
   // const onSearch = (name) => { 
@@ -18,10 +32,14 @@ const User = () => {
   //   await dispatch(getUsers());
   // };
 
-  // useEffect(() => {
-  //   Users();
-  //   // eslint-disable-next-line
-  // }, []);
+  useEffect(() => {
+    if(data.length !== 0){
+      dispatch(getUsersByName(data))   
+    }    
+      // eslint-disable-next-line
+    },[data])
+  
+  
   
   const allUsers = users?.map((element) => {
     
@@ -40,22 +58,22 @@ const User = () => {
           <Button type="primary" onClick={() => dispatch(follow(element._id))}>
             Seguir
           </Button>
-        )}
+        )} 
       </ul>
     );
   });
 
   return <div>
-     {/* <Search
+     <Search
         allowClear
         placeholder="Buscar usuario"
-        enterButton="Buscar"
         size="medium"
-        onSearch={onSearch}
+        onChange={onChange}
+        name= 'search'
         style={{
           width: 304,
         }}
-      /> */}
+      />
     {allUsers}
     </div>;
 };

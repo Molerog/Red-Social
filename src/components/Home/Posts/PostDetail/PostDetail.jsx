@@ -36,6 +36,7 @@ const PostDetail = () => {
   const { _id } = useParams();
   const dispatch = useDispatch();
   const { post } = useSelector((state) => state.posts);
+  // const { user } = useSelector ((state) => state.auth);
   const [comment, setComment] = useState([]);
   const [submitting, setSubmitting] = useState(false);
   const [value, setValue] = useState("");
@@ -64,6 +65,8 @@ const PostDetail = () => {
     setValue(e.target.value);
   };
 
+  console.log(post.comments)
+  // const isAlreadyLiked = post.comments.likes?.includes(user?.user._id);
   const comments = post.comments?.map((comment) => {
     return (
       <div key={comment._id}>

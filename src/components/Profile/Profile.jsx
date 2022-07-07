@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux';
 import UserLogged from './UserLogged/UserLogged';
 
 const Profile = () => {
+
     const { user } = useSelector((state) => state.auth);
   return (
     <>

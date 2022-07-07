@@ -54,15 +54,17 @@ export const usersSlice = createSlice({
             state.users = action.payload
         })
         .addCase(follow.fulfilled, (state,action)=>{
+            console.log('soy el follow', action.payload)
             const users = state.users.map((user)=>{
-                if (user._id === action.payload._id){
-                    user = action.payload
+                if (user._id === action.payload.user._id){
+                    user = action.payload.user
                 }
                 return user;
             })
             state.users = users;
         })
         .addCase(unfollow.fulfilled, (state,action)=>{
+            console.log('soy el unfollow', action.payload)
             const users = state.users.map((user)=>{
                 if (user._id === action.payload._id){
                     user = action.payload
