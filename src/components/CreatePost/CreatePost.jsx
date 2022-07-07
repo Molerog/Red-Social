@@ -1,73 +1,62 @@
 import { createPost } from "../../features/posts/postsSlice";
-import { Button, Modal, Form, Input} from "antd";
+import { Button, Modal, Form, Input } from "antd";
 import { useDispatch } from "react-redux";
 import React, { useState } from "react";
 
-const layout = {
-    labelCol: {
-      span: 8,
-    },
-    wrapperCol: {
-      span: 16,
-    },
-  };
-  
-const validateMessages = {
-    required: '${label} es requerido',
-  };
+// const layout = {
+//   labelCol: {
+//     span: 8,
+//   },
+//   wrapperCol: {
+//     span: 16,
+//   },
+// };
 
- 
+// const validateMessages = {
+//   required: "${label} es requerido",
+// };
+
 const CreatePost = () => {
-    const [visible, setVisible] = useState(false);
-    const dispatch = useDispatch();
+  const [visible, setVisible] = useState(false);
+  const dispatch = useDispatch();
 
-    const onFinish = async (values) => {
-        if (values != null){
-          setVisible(false)
-          await dispatch(createPost(values))
-        }
-      };
-     
+  const onSubmit = async (e) => {
+    console.log(e.target.myFile.files[0])
+    e.preventDefault()
+    const formData = new FormData();
+    if (e.target.myFile.files[0]) formData.set('imagePost', e.target.myFile.files[0]);
+    formData.set("title", e.target.title.value);
+    formData.set("body", e.target.content.value);
+    if ( e.target.title.value != null && e.target.content.value != null) {
+      setVisible(false);
+      await dispatch(createPost(formData))
+    }
+  };
+
   return (
     <>
-        <Button type="primary" onClick={() => setVisible(true)}>
-          Crear un Post
-        </Button>
-        <Modal 
-          title="Nuevo Post"
-          visible={visible}
-          width={1000}
-          onCancel={() => setVisible(false)}
-          footer={null}
-        >
-          <Form {...layout} name="nest-messages" onFinish={onFinish} validateMessages={validateMessages}>
-            <Form.Item
-        name={'title'}
-        label="Título"
-        rules={[
-          {
-            required: true,
-          },
-        ]}
+      <Button type="primary" onClick={() => setVisible(true)}>
+        Crear un Post
+      </Button>
+      <Modal
+        title="Nuevo Post"
+        visible={visible}
+        width={1000}
+        onCancel={() => setVisible(false)}
+        footer={null}
       >
-        <Input />
-      </Form.Item>
-      <Form.Item name={['body']} label="Texto del post"  rules={[
-          {
-            required: true,
-          },
-        ]}>
-        <Input.TextArea />
-      </Form.Item>
-      <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
-        <Button type="primary" htmlType="submit">
-          Publicar
-        </Button>
-      </Form.Item>
-      </Form>
-        </Modal>
-      </>
-  )
-}
+         <form
+          onSubmit={onSubmit}
+          className="form card animate__animated animate__fadeIn"
+        >
+          <input type="file" name="myFile"/>
+          <input type="text" placeholder="Title..." name="title" />
+          <input type="text" placeholder="Description..." name="content" />
+          <button type="submit">Añade una publicación</button>
+        </form>
+      </Modal>
+    </>
+  );
+};
 
-export default CreatePost
+export default CreatePost;

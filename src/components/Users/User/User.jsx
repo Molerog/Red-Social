@@ -10,13 +10,11 @@ import {
   unfollow,
 } from "../../../features/users/usersSlice";
 import "./Users.scss";
-import { destroy } from "../../../features/posts/postsSlice";
 const { Search } = Input;
 
 const User = () => {
   const admin = window.location.pathname.includes('admin');
   const [data, setData] = useState("");
-console.log('hola')
   const { user } = useSelector((state) => state.auth);
   const { users } = useSelector((state) => state.users);
   const dispatch = useDispatch();
