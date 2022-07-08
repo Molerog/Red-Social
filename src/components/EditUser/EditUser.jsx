@@ -16,10 +16,10 @@ const EditUser = () => {
   const { user } = useSelector((state) => state.auth);
   const { user: userPrint } = useSelector((state) => state.users)
 
-//   const getData = (_id) => {
-//     dispatch(getUsersById(_id));
-//     setVisible(true);
-//   };
+  const getData = (_id) => {
+    dispatch(getUsersById(_id));
+    setVisible(true);
+  };
 
   const dispatch = useDispatch();
 
@@ -56,7 +56,7 @@ const EditUser = () => {
       <div key={user.user._id}>
         <Button
           type="primary"
-          onClick={setVisible()}
+          onClick={() => {getData(user.user._id)}}
         >
           Editar Perfil
         </Button>
