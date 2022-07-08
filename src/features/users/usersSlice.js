@@ -3,6 +3,7 @@ import userService from "./userService";
 
 const initialState = {
   users: [],
+  user: {}
 };
 
 export const getUsers = createAsyncThunk("users/get", async () => {
@@ -45,6 +46,22 @@ export const deleteUsers = createAsyncThunk("users/delete", async (name) => {
     }
   });
 
+export const updateUsers = createAsyncThunk("users/update", async (data) => {
+  try {
+    return await userService.updateUsers(data);
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+export const getUsersById = createAsyncThunk("users/byId", async (_id) => {
+  try {
+    return await userService.getUsersById(_id);
+  } catch (error) {
+    console.error(error);
+  }
+});
+
 export const usersSlice = createSlice({
   name: "users",
   initialState,
@@ -86,6 +103,12 @@ export const usersSlice = createSlice({
       })
       .addCase(deleteUsers.fulfilled, (state,action)=>{
         state.users = state.users.filter((user)=>user._id !== action.payload.user._id)
+      })
+      .addCase(getUsersById.fulfilled, (state, action) =>{
+        state.user = action.payload
+      })
+      .addCase(updateUsers.fulfilled, (state, action) =>{
+        state.user = action.payload.user
       })
   },
 });
