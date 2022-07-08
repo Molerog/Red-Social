@@ -1,20 +1,8 @@
 import { createPost } from "../../features/posts/postsSlice";
-import { Button, Modal, Form, Input } from "antd";
+import { Button, Modal } from "antd";
 import { useDispatch } from "react-redux";
 import React, { useState } from "react";
 
-// const layout = {
-//   labelCol: {
-//     span: 8,
-//   },
-//   wrapperCol: {
-//     span: 16,
-//   },
-// };
-
-// const validateMessages = {
-//   required: "${label} es requerido",
-// };
 
 const CreatePost = () => {
   const [visible, setVisible] = useState(false);

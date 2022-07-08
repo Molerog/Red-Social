@@ -55,7 +55,7 @@ const User = () => {
             Seguir
           </Button>
         )}
-        {user.user.role === 'admin'&& admin ? (
+        {user.user?.role === 'admin'&& admin ? (
           <Button
           type="danger"
           onClick={() => {

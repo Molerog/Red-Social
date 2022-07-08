@@ -11,6 +11,8 @@ const Post = () => {
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
+  
+
   const post = posts?.map((post) => {
     const isAlreadyLiked = post.likes?.includes(user?.user._id);
     return (

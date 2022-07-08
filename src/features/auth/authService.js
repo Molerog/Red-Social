@@ -28,11 +28,52 @@ const logout = async () => {
     return res.data;
 }
 
+const getInfo = async () =>{
+    const user = JSON.parse(localStorage.getItem('user'));
+    const res = await axios.get(API_URL + '/users/user', {
+        headers:{
+            authorization: user?.token
+        }
+    })
+    return res.data
+  }
+
+  const updateUsers = async (data) => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const res = await axios.put(API_URL + "/users/" , data,
+    {
+      headers: {
+        authorization: user?.token,
+      },
+    }
+  );
+  console.log(res.data)
+  return res.data
+  }
+
+  const getUsersById = async (_id) => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const res = await axios.get(API_URL + "/users/id/" + _id,
+    {
+      headers: {
+        authorization: user?.token,
+      },
+    }
+  );
+  return res.data
+  }
+  
+
+
 
 const authService ={
     register,
     login,
     logout,
+    getInfo,
+    updateUsers,
+    getUsersById
+    
 }
 
 export default authService;

@@ -6,6 +6,7 @@ import { getInfo } from "../../../features/posts/postsSlice";
 
 const UserLogged = () => {
   const { posts } = useSelector((state) => state.posts);
+  // const { userUpdated } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   useEffect(() => {

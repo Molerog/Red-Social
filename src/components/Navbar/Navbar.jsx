@@ -6,8 +6,7 @@ import { logout } from "../../features/auth/authSlice";
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.auth);
-
+  const { userUpdated, user } = useSelector((state) => state.auth);
   const onLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
@@ -25,7 +24,7 @@ const Header = () => {
               </Link>
             </span>
             <span>
-              <Link to="/profile">{user.user.name} </Link>
+              <Link to="/profile">{user.user?.name} </Link>
             </span>
             <span>
               <Link to="/home">Feed</Link>
@@ -34,7 +33,7 @@ const Header = () => {
               <Link to="/users">Usuarios</Link>
             </span>
             <div>
-              {user.user.role === "admin" ? (
+              {user.user?.role === "admin" ? (
                 <span>
                   <Link to="/admin">Admin</Link>
                 </span>
