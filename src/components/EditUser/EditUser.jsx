@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Button, Modal } from "antd";
 import { updateUsers } from "../../features/auth/authSlice";
 
+
 const EditUser = () => {
   const { user, info } = useSelector((state) => state.auth);
   const initialState = {
@@ -15,8 +16,10 @@ const EditUser = () => {
   const { name, email, password, imageUser } = formData; //Se destructura por comodidad para no utilizar formData
   const [visible, setVisible] = useState(false);
   const dispatch = useDispatch();
+  
   // const { userUpdated } = useSelector((state) => state.auth)
 
+ 
   const onSubmit = async (e) => {
     e.preventDefault();
     const editedData = new FormData(); //si pulso F2 sobre una variable me cambia de nombre todas (con el mismo nombre[creo que solo en este archivo])
@@ -28,7 +31,9 @@ const EditUser = () => {
     // editedData.set("password", e.target.password.value);
     setVisible(false);
     // setFormData(initialState);
+
     await dispatch(updateUsers(editedData));
+    
   };
 
   const onChange = (e) => {

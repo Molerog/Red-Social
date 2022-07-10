@@ -6,15 +6,16 @@ import { logout } from "../../features/auth/authSlice";
 const Navbar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.auth);
+  const { user, info } = useSelector((state) => state.auth);
   const onLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
     navigate("/login");
   };
+
+  
   return (
     <nav>
-      <h2>Navbar</h2>
       <div>
         {user ? (
           <>
@@ -24,7 +25,7 @@ const Navbar = () => {
               </Link>
             </span>
             <span>
-              <Link to="/profile">{user?.user?.name} </Link>
+              <Link to="/profile">{info?.name} </Link>
             </span>
             <span>
               <Link to="/home">Feed</Link>
@@ -45,10 +46,10 @@ const Navbar = () => {
         ) : (
           <>
             <span>
-              <Link to="/login">Login</Link>
+              {/* <Link to="/login">Login</Link> */}
             </span>
             <span>
-              <Link to="/register">Register</Link>
+              {/* <Link to="/register">Register</Link> */}
             </span>
           </>
         )}

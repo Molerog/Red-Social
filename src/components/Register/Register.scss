@@ -1,0 +1,23 @@
+.GlobalContainer {
+  display: flex;
+  height: 100vh;
+  .Image {
+    background-size: cover;
+    background-position: center center;
+    background-image: url("../../Assets/Portada.jpg");
+    flex: 1;
+  }
+  .ModalRegister {
+    border: 2px solid red;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+        .ant-form-horizontal{
+            display:flex;
+            flex-direction: column;
+            border: 2px solid purple;
+            gap:2em;           
+        }
+  }
+}
