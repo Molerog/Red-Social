@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Button, Modal } from "antd";
-import { getUsersById, updateUsers } from "../../features/auth/authSlice";
+import { updateUsers } from "../../features/auth/authSlice";
 
 const EditUser = () => {
-  const { user } = useSelector((state) => state.auth);
+  const { user, info } = useSelector((state) => state.auth);
   const initialState = {
     name: "",
     email: "",
@@ -17,18 +17,15 @@ const EditUser = () => {
   const dispatch = useDispatch();
   // const { userUpdated } = useSelector((state) => state.auth)
 
-
-
   const onSubmit = async (e) => {
-    console.log(e);
     e.preventDefault();
     const editedData = new FormData(); //si pulso F2 sobre una variable me cambia de nombre todas (con el mismo nombre[creo que solo en este archivo])
-    if (e.target.myFile.files[0]){
+    if (e.target.myFile.files[0]) {
       editedData.set("imageUser", e.target.myFile.files[0]);
     }
     editedData.set("name", e.target.name.value);
     editedData.set("email", e.target.email.value);
-    editedData.set("password", e.target.password.value);
+    // editedData.set("password", e.target.password.value);
     setVisible(false);
     // setFormData(initialState);
     await dispatch(updateUsers(editedData));
@@ -42,16 +39,13 @@ const EditUser = () => {
   };
 
   useEffect(() => {
-    setFormData(user.user); //
-  }, [user]);
+    setFormData(info); //
+  }, [info]);
 
   return (
     <>
       <div key={user.user?._id}>
-        <Button
-          type="primary"
-          onClick={()=> setVisible(true)}
-        >
+        <Button type="primary" onClick={() => setVisible(true)}>
           Editar Usuario
         </Button>
       </div>
@@ -80,13 +74,13 @@ const EditUser = () => {
             name="email"
             value={email}
           />
-          <input
+          {/* <input
             onChange={onChange}
             type="text"
             placeholder="password"
             name="password"
             value={password}
-          />
+          /> */}
           <br />
           <input
             onChange={onChange}

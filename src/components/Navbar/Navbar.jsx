@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../features/auth/authSlice";
 
 
-const Header = () => {
+const Navbar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { userUpdated, user } = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.auth);
   const onLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
@@ -24,7 +24,7 @@ const Header = () => {
               </Link>
             </span>
             <span>
-              <Link to="/profile">{user.user?.name} </Link>
+              <Link to="/profile">{user?.user?.name} </Link>
             </span>
             <span>
               <Link to="/home">Feed</Link>
@@ -57,4 +57,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Navbar;

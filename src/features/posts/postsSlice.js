@@ -83,6 +83,14 @@ export const editPost = createAsyncThunk("posts/edit", async (values) => {
   }
 });
 
+export const getUserInfo = createAsyncThunk("posts/info", async () => {
+  try {
+    return await postsService.getUsersInfo();
+  } catch (error) {
+    console.error(error);
+  }
+});
+
 export const postsSlice = createSlice({
   name: "posts",
   initialState,
@@ -144,6 +152,9 @@ export const postsSlice = createSlice({
     .addCase(getInfo.fulfilled, (state, action)=>{
       state.info = action.payload
   })
+  .addCase(getUserInfo.fulfilled, (state, action) =>{
+              state.info = action.payload
+            })
   },
 });
 

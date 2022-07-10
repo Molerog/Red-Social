@@ -44,7 +44,7 @@ const EditPost = () => {
     dispatch(destroy(value));
   };
 
-  const editButton = info.postIds?.map((e) => {
+  const editButton = info?.postIds?.map((e) => {
     return (
       <div key={e._id}>
         <span>{e.title}</span>
