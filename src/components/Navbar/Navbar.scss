@@ -1,0 +1,32 @@
+a{
+    color: inherit; 
+}
+
+.NavBar{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex:1;
+    height: calc(100vh - 50px);
+    background-color: #132E32;
+    margin-right:5em;
+    overflow: auto;
+    position: sticky;
+    top: 5.2%;
+    
+    .NavBarWrapper{
+        font-size:2em;
+    }  
+    .SideBarList{
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+        padding:0;
+        margin:0; 
+        gap:3em;
+        color:white
+        
+    }
+}
+
+

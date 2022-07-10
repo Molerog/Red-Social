@@ -13,6 +13,7 @@ export const getAll = createAsyncThunk("post/getAll", async () => {
   } catch (error) {
     console.error(error);
   }
+  return reset.data
 });
 
 export const getById = createAsyncThunk(
@@ -76,6 +77,7 @@ export const destroy = createAsyncThunk("posts/destroy", async (_id) => {
 });
 
 export const editPost = createAsyncThunk("posts/edit", async (values) => {
+  console.log(values)
   try {
     return await postsService.editPost(values);
   } catch (error) {

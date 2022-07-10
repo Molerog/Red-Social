@@ -13,7 +13,7 @@ const EditUser = () => {
     imageUser: "",
   };
   const [formData, setFormData] = useState(initialState);
-  const { name, email, password, imageUser } = formData; //Se destructura por comodidad para no utilizar formData
+  const { name, email, imageUser } = formData; //Se destructura por comodidad para no utilizar formData
   const [visible, setVisible] = useState(false);
   const dispatch = useDispatch();
   

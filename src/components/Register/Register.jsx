@@ -1,7 +1,7 @@
 import { Form, Input, Button, notification } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { register, reset } from "../../features/auth/authSlice";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useEffect } from "react";
 import "./Register.scss";
 
@@ -35,7 +35,7 @@ const Register = () => {
   };
   return (
     <div className="GlobalContainer">
-      <div className='Image'>Image</div>
+      <div className="Image">Image</div>
       <div className="ModalRegister">
         <Form
           name="basic"
@@ -113,11 +113,12 @@ const Register = () => {
             <Input.Password />
           </Form.Item>
 
-          {/* <div className='textContainer'>
-                    <span>¿Ya estás registrado?</span> <Link to='/login'>Inicia sesión</Link>
-                </div>
+          <div className="textContainer">
+            <span>¿Ya estás registrado?</span>{" "}
+            <Link to="/login">Inicia sesión</Link>
+          </div>
 
-                {message} */}
+          {message}
 
           <br />
 

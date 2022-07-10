@@ -82,7 +82,6 @@ const editPost = async(data) => {
             authorization: user.token,
         }
     });
-
     return res.data
 }
 

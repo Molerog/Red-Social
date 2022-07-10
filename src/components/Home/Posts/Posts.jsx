@@ -3,15 +3,16 @@ import { getAll, reset } from "../../../features/posts/postsSlice";
 import { useEffect } from "react";
 import Post from "./Post/Post";
 import { LoadingOutlined } from "@ant-design/icons";
-import CreatePost from "../../CreatePost/CreatePost";
-
-
+// import CreatePost from "../../CreatePost/CreatePost";
+import { getUserInfo } from "../../../features/auth/authSlice";
+import "./Posts.scss";
 
 const Posts = () => {
   const { isLoading } = useSelector((state) => state.posts);
   const dispatch = useDispatch();
 
-  const getPostsAndReset = async() => {  
+  const getPostsAndReset = async () => {
+    await dispatch(getUserInfo());
     await dispatch(getAll());
     dispatch(reset());
   };
@@ -34,10 +35,9 @@ const Posts = () => {
     );
   }
   return (
-    <div>
-      <h1>Posts</h1>
-      <Post/>
-      <CreatePost/>
+    <div className="Feed">
+      {/* <CreatePost /> */}
+      <Post />
     </div>
   );
 };

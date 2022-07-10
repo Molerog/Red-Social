@@ -21,7 +21,7 @@ const CreatePost = () => {
   };
 
   return (
-    <>
+    <div className='CreateButton'>
       <Button type="primary" onClick={() => setVisible(true)}>
         Crear un Post
       </Button>
@@ -42,7 +42,7 @@ const CreatePost = () => {
           <button type="submit">Añade una publicación</button>
         </form>
       </Modal>
-    </>
+    </div>
   );
 };
 
