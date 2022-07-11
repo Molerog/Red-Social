@@ -14,7 +14,7 @@ const Navbar = () => {
   const onLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
-    navigate("/login");
+    navigate("/");
   };
 
   return (

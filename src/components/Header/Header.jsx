@@ -14,7 +14,7 @@ const Header = () => {
   const onSearch = (e) => {
     navigate("/search/" + e);
   };
-  if (pathname === "/login" || pathname === "/register") return null;
+  if (pathname === "/" || pathname === "/register") return null;
   return (
     <>
       <div className="TopBarContainer">

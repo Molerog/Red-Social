@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import commentsService from "./commentsService";
 
 const initialState = {
-  comments: {},
+  comments: []
 };
 
 export const createComment = createAsyncThunk(

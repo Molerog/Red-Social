@@ -17,7 +17,7 @@ const Register = () => {
         description: message,
       });
       setTimeout(() => {
-        navigate("/login");
+        navigate("/");
       }, 3000);
     }
     if (isError) {
@@ -115,7 +115,7 @@ const Register = () => {
 
           <div className="textContainer">
             <span>¿Ya estás registrado?</span>{" "}
-            <Link to="/login">Inicia sesión</Link>
+            <Link to="/">Inicia sesión</Link>
           </div>
 
           {message}

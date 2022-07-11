@@ -11,13 +11,7 @@ const UserLogged = () => {
     dispatch(getInfo());
   }, [posts]);
 
-
-
-  return (
-    <>
-      <InfoUserLogged />
-    </>
-  );
+  return <InfoUserLogged />;
 };
 
 export default UserLogged;

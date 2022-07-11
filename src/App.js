@@ -6,11 +6,12 @@ import Register from "./components/Register/Register";
 // import Navbar from './components/Navbar/Navbar';
 import Profile from "./components/Profile/Profile";
 import Home from "./components/Home/Home";
-import PostDetail from "./components/Home/Posts/PostDetail/PostDetail";
+import PostDetailRender from "./components/Home/Posts/PostDetailRender/PostDetailRender";
 import Search from "./components/Search/Search";
 import Admin from "./components/Admin/Admin";
 import Users from "./components/Users/Users";
 import Header from "./components/Header/Header";
+
 
 function App() {
   return (
@@ -20,10 +21,10 @@ function App() {
         {/* <Navbar /> */}
         <Routes>
           <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Login />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/posts/id/:_id" element={<PostDetail />} />
+          <Route path="/posts/id/:_id" element={<PostDetailRender />} />
           <Route path="/search/:title" element={<Search />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/users" element={<Users />} />

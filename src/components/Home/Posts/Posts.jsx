@@ -36,7 +36,7 @@ const Posts = () => {
   }
   return (
     <div className="Feed">
-      {/* <CreatePost /> */}
+      
       <Post />
     </div>
   );
