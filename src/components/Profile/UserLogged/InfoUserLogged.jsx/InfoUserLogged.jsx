@@ -3,9 +3,9 @@ import EditPost from "../../../EditPost/EditPost";
 import './InfoUserLogged.scss'
 const InfoUserLogged = () => {
   return (
-    <>
+    
       <EditPost />
-    </>
+   
   );
 };
 
