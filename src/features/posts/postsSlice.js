@@ -142,6 +142,7 @@ export const postsSlice = createSlice({
     });
     builder
     .addCase(editPost.fulfilled, (state, action)=>{
+      console.log(action.payload)
       const posts = state.posts.map(post =>{
         if (post._id === action.payload.post._id){
           post = action.payload.post;

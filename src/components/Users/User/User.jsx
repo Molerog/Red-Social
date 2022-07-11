@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { Input } from "antd";
-import { Button } from "antd";
+import { Button, Card } from "antd";
 import {
   deleteUsers,
   follow,
@@ -9,11 +9,14 @@ import {
   getUsersByName,
   unfollow,
 } from "../../../features/users/usersSlice";
-import "./Users.scss";
+import "./User.scss";
+
+const url = "http://localhost:8080/users/";
+
 const { Search } = Input;
 
 const User = () => {
-  const admin = window.location.pathname.includes('admin');
+  const admin = window.location.pathname.includes("admin");
   const [data, setData] = useState("");
   const { user } = useSelector((state) => state.auth);
   const { users } = useSelector((state) => state.users);
@@ -36,53 +39,100 @@ const User = () => {
     // eslint-disable-next-line
   }, [data]);
 
-
   const allUsers = users?.map((element) => {
     const isAlreadyFollowed = element.followers?.includes(user?.user?._id);
     return (
-      <ul key={element._id}>
-        <li>Nombre de usuario:{element.name}</li>
-        <li>Email de usuario:{element.email}</li>
-        <li>Role de usuario:{element.role}</li>
-        <li>Followers:{element.followers.length}</li>
-        <li>Following:{element.following.length}</li>
-        {isAlreadyFollowed ? (
-          <Button type="danger" onClick={() => dispatch(unfollow(element._id))}>
-            Dejar de seguir
-          </Button>
-        ) : (
-          <Button type="primary" onClick={() => dispatch(follow(element._id))}>
-            Seguir
-          </Button>
-        )}
-        {user.user?.role === 'admin'&& admin ? (
-          <Button
-          type="danger"
-          onClick={() => {
-            destroyPost(element._id);
-          }}
+    
+      <Card
+          className="Cards "
+          hoverable= 'true'
+          style={{ width: 400 }}
         >
-          Eliminar Usuario
-        </Button>
-        ):null}
-      </ul>
+          <div classNAme="WraperContainer" key={element._id}>
+            <div className="avatar-name">
+            
+            <img
+              alt="example"
+              src={url + element.imagepath}
+              style={{ width: 40 }}
+            />
+          <span className="ant-card-head">{element.name}</span> 
+            </div>
+            <div className="Grid">
+              <div className="Container">
+                <li className="Usuario">
+                  Nombre de usuario:<h3>{element.name}</h3>
+                </li>
+              </div>
+              <div className="Container">
+                <li className="Email">
+                  Email de usuario:<h4>{element.email}</h4>
+                </li>
+              </div>
+              <div className="Container">
+                <li className="Rol">
+                  Role de usuario:<h4>{element.role}</h4>
+                </li>
+              </div>
+              <div className="Container">
+                <li className="Followers">
+                  Followers:<h4>{element.followers.length}</h4>
+                </li>
+              </div>
+              <div className="Container">
+                <li className="Following">
+                  Following:<h4>{element.following.length}</h4>
+                </li>
+              </div>
+              {isAlreadyFollowed ? (
+                <Button
+                  type="danger"
+                  onClick={() => dispatch(unfollow(element._id))}
+                >
+                  Dejar de seguir
+                </Button>
+              ) : (
+                <Button
+                  type="primary"
+                  onClick={() => dispatch(follow(element._id))}
+                >
+                  Seguir
+                </Button>
+              )}
+              {user.user?.role === "admin" && admin ? (
+                <Button
+                  type="danger"
+                  onClick={() => {
+                    destroyPost(element._id);
+                  }}
+                >
+                  Eliminar Usuario
+                </Button>
+              ) : null}
+            </div>
+          </div>
+        </Card>
     );
   });
 
   return (
-    <div>
-      <Search
-        allowClear
-        placeholder="Buscar usuario"
-        size="medium"
-        onChange={onChange}
-        name="search"
-        style={{
-          width: 304,
-        }}
-      />
-      {allUsers}
-    </div>
+    <>
+      <div className="SearchAndUsersContainer">
+        <div className="SearchBox">
+          <Search
+            allowClear
+            placeholder="Buscar usuario"
+            size="medium"
+            onChange={onChange}
+            name="search"
+            style={{
+              width: 304,
+            }}
+          />
+        </div>
+        <div className="UsersGeneralContainer">{allUsers}</div>
+      </div>
+    </>
   );
 };
 
