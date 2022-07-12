@@ -8,7 +8,7 @@ import { getUserInfo } from "../../../features/auth/authSlice";
 import "./Posts.scss";
 
 const Posts = () => {
-  const { isLoading } = useSelector((state) => state.posts);
+  const { isLoading, newPost } = useSelector((state) => state.posts);
   const dispatch = useDispatch();
 
   const getPostsAndReset = async () => {
@@ -19,7 +19,10 @@ const Posts = () => {
 
   useEffect(() => {
     getPostsAndReset();
-  }, []);
+  }, [newPost]);
+
+console.log('hola')
+
 
   if (isLoading) {
     return (

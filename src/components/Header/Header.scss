@@ -52,12 +52,12 @@
         align-items: center;
         font-size: 12px;
       }
+      .TopBarImg {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
     }
   }
-}
-.TopBarImg {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  object-fit: cover;
 }

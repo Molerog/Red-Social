@@ -1,8 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { HeartOutlined, HeartFilled, CommentOutlined } from "@ant-design/icons";
-import { dislike, like } from "../../../../features/posts/postsSlice";
+import { dislike, getAll, like} from "../../../../features/posts/postsSlice";
+import { useEffect } from "react";
 import "../Post/Post.scss";
+
 const urlPost = "http://localhost:8080/posts/";
 const urlUser = "http://localhost:8080/users/";
 
@@ -10,9 +12,7 @@ const Post = () => {
   const { posts } = useSelector((state) => state.posts);
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-
   const post = posts?.map((post) => {
-    console.log(post.comments);
     const isAlreadyLiked = post.likes?.includes(user?.user._id);
     return (
       <div className="Post" key={post._id}>
@@ -28,7 +28,7 @@ const Post = () => {
             </div>
             <div className="PostCenter">
               <Link to={"/posts/id/" + post._id}>
-                <p className="PostTitle">{post.title}</p>
+                <h2 className="PostTitle">{post.title}</h2>
 
                 <img
                   className="PostImage"
@@ -48,7 +48,7 @@ const Post = () => {
               </div>
               <div className="postBottomRight">
                 <CommentOutlined style={{fontSize: '25px', color: ''}} />
-                {post.commments?.length}comentarios
+                {post.comments?.length} comentarios en este post
               </div>
             </div>
           </div>

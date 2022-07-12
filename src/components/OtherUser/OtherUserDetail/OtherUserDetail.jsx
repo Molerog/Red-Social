@@ -4,8 +4,8 @@ import { getUserInfo } from "../../../features/auth/authSlice";
 import Navbar from "../../Navbar/Navbar";
 import "./OtherUserDetail.scss";
 
-const url = "http://localhost:8080/users/";
-const url2 = "http://localhost:8080/posts/";
+const url = "http://localhost:8080/posts/";
+const url2 = "http://localhost:8080/users/";
 
 const OtherUserDetail = () => {
   const dispatch = useDispatch();
@@ -16,10 +16,6 @@ const OtherUserDetail = () => {
   const followers = userProfile.followers;
   const following = userProfile.following;
 
-
-
-  console.log(userProfile);
-
   useEffect(() => {
     dispatch(getUserInfo());
   }, []);
@@ -27,25 +23,23 @@ const OtherUserDetail = () => {
   if (!user) {
     return <>Cargando Perfil...</>;
   }
-  const postInfo = userProfile?.postIds?.map(e =>{
-    console.log(e.title)
-    return(<div className="BottomContainer">
-    <div className="row">
-      <div className="left col-lg-4">
-        <div className="row gallery">
-          <div className="GaleryContainer">
-            <div className="PostUserContainer">
-              <span className="Title">
-                <h3>{e?.title}</h3>
-              </span>
-              <img className="image" src={url2 + e?.imagepath} alt=''/>
+  const postInfo = userProfile?.postIds?.map((e) => {
+    console.log(e._id);
+    return (
+      <div className="MegaSuper" >
+        <div className="Super" key={e._id}>
+          <div className="PostUserContainer">
+            <span className="Title">
+              <h3>{e.title}</h3>
+            </span>
+            <div className="ImageContainer">
+              <img className="Image" src={url + e.imagepath} alt="" />
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>)
-  })
+    );
+  });
   return (
     <div className="ProfileContainer">
       <Navbar />
@@ -60,7 +54,7 @@ const OtherUserDetail = () => {
                 <div className="photo-left">
                   <img
                     className="photo"
-                    src={url + userProfile?.imagepath}
+                    src={url2 + userProfile?.imagepath}
                     alt=""
                   />
                 </div>
@@ -83,7 +77,7 @@ const OtherUserDetail = () => {
                 </div>
               </div>
             </div>
-            {postInfo}
+            <div className=' SuperGeneralContainer'>{postInfo}</div>
           </main>
         </div>
       </div>

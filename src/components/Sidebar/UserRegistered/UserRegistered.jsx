@@ -8,7 +8,7 @@ const User = () => {
   const { user } = useSelector((state) => state.auth);
   const { users } = useSelector((state) => state.users);
   const dispatch = useDispatch();
-  console.log(users);
+
   useEffect(() => {
     dispatch(getUsers());
     // eslint-disable-next-line

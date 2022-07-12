@@ -1,19 +1,21 @@
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import { getById } from '../../../../features/users/usersSlice';
-import OtherUserDetail from '../OtherUserDetail';
-import './SearchUser.scss'
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
+import { getById } from "../../../../features/users/usersSlice";
+import OtherUserDetail from "../OtherUserDetail";
+import "./SearchUser.scss";
 
 const SearchUser = () => {
   const { _id } = useParams();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getById(_id))
-  },[_id])
+    dispatch(getById(_id));
+  }, [_id]);
   return (
-    <OtherUserDetail />
-  )
-}
+    <>
+      <OtherUserDetail />
+    </>
+  );
+};
 
-export default SearchUser
+export default SearchUser;

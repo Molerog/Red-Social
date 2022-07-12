@@ -12,6 +12,7 @@ import {
   like,
 } from "../../../../../features/comments/commentsSlice";
 import "./PostDetail.scss";
+import { getUserInfo } from "../../../../../features/auth/authSlice";
 
 const { TextArea } = Input;
 const validateMessages = {
@@ -44,7 +45,6 @@ const PostDetail = () => {
   const { comments } = useSelector((state) => state.comments);
   const { post } = useSelector((state) => state.posts);
   const { user } = useSelector((state) => state.auth);
-  console.log(user)
   const [comment, setComment] = useState([]);
   const [submitting, setSubmitting] = useState(false);
   const [value, setValue] = useState("");
@@ -71,7 +71,6 @@ const PostDetail = () => {
 
   const url = "http://localhost:8080/users/"
 
-  console.log(post)
   
 
   const handleChange = async (e) => {
@@ -102,6 +101,11 @@ const PostDetail = () => {
   useEffect(() => {
     dispatch(getById(_id));
   }, [comments]);
+
+  useEffect(() => {
+    dispatch(getUserInfo());
+  }, []);
+
   return (
     <div className="Caja">
       <div className="WrapperContainer">

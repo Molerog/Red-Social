@@ -7,6 +7,7 @@ import PostAdmin from "./PostAdmin/PostAdmin";
 import UserAdmin from "./UserAdmin/UserAdmin";
 import Navbar from "../Navbar/Navbar";
 import "./Admin.scss";
+import { getUserInfo } from "../../features/auth/authSlice";
 
 const { TabPane } = Tabs;
 
@@ -21,6 +22,7 @@ const Admin = () => {
 
   useEffect(() => {
     getPostsAndReset();
+    dispatch(getUserInfo())
   }, []);
   if (isLoading) {
     return <h1>Cargando posts...</h1>;

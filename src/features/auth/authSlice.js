@@ -52,13 +52,7 @@ export const updateUsers = createAsyncThunk("auth/update", async (data) => {
   }
 });
 
-// export const getUsersById = createAsyncThunk("auth/byId", async (_id) => {
-//   try {
-//     return await authService.getUsersById(_id);
-//   } catch (error) {
-//     console.error(error);
-//   }
-// });
+
 
 export const getUserInfo = createAsyncThunk("auth/info", async () => {
     try {
@@ -101,23 +95,11 @@ export const authSlice = createSlice({
         state.isError = true;
         state.message = action.payload;
       })
-      // .addCase(updateUsers.fulfilled, (state, action) => {
-      //   console.log(
-      //     "soy el action metiendo el user actualizado en el estado",
-      //     action.payload
-      //   );
-      //   state.user.user.name = action.payload.user.name;
-      //   state.user.user.email = action.payload.user.email;
-      //   state.user.user.password = action.payload.user.password;
-      //   state.user.user.imagepath = action.payload.user.imagepath;
-      // })
+     
       .addCase(updateUsers.fulfilled, (state, action) => {
         state.userUpdated = action.payload;
       })
-      // .addCase(getUsersById.fulfilled, (state, action) => {
-      //   // console.log(action.payload.user)
-      //   state.user = action.payload;
-      // });
+   
     .addCase(getUserInfo.fulfilled, (state, action) =>{
       state.info = action.payload
     })

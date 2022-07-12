@@ -13,7 +13,6 @@ const PostAdmin = () => {
   const dispatch = useDispatch();
 
   const post = posts?.map((post) => {
-    console.log(post)
     return (
       <div className="PostMapContainer" key={post._id}>
         <div className="Wrapper">

@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { getUsers } from "../../features/users/usersSlice";
 import Navbar from "../Navbar/Navbar";
 import "./User.scss";
+import { getUserInfo } from "../../features/auth/authSlice";
 
 const Users = () => {
   const dispatch = useDispatch();
@@ -14,6 +15,7 @@ const Users = () => {
 
   useEffect(() => {
     Users();
+    dispatch(getUserInfo())
     // eslint-disable-next-line
   }, []);
   return (

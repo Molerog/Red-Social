@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Button, Modal, Form, Input } from "antd";
-import { destroy, editPost, getById } from "../../features/posts/postsSlice";
+import {
+  destroy,
+  editPost,
+  setPostToEdit,
+} from "../../features/posts/postsSlice";
 import "./EditPost.scss";
 
 const layout = {
@@ -22,12 +26,11 @@ const validateMessages = {
 const EditPost = () => {
   const [form] = Form.useForm();
   const [visible, setVisible] = useState(false);
-  const { info, post } = useSelector((state) => state.posts);
-
-  console.log(info);
+  const { info, post, postToEdit } = useSelector((state) => state.posts);
 
   const getId = (_id) => {
-    dispatch(getById(_id));
+    const superPost = info.postIds.filter((e) => e._id === _id)[0];
+    dispatch(setPostToEdit(superPost));
     setVisible(true);
   };
 
@@ -40,8 +43,8 @@ const EditPost = () => {
   };
 
   useEffect(() => {
-    form.setFieldsValue(post);
-  }, [post]);
+    form.setFieldsValue(postToEdit);
+  }, [postToEdit]);
 
   const dispatch = useDispatch();
 
@@ -50,49 +53,36 @@ const EditPost = () => {
   };
 
   const editButton = info?.postIds?.map((e) => {
-    console.log(e.imagepath);
     return (
-      <div className='MegaSuper'>
-      <div className='Super' key={e._id}>
-        <div class="PostContainer">
-          <main>
-            <div className="BottomContainer">
-              <div className="row">
-                <div className="left col-lg-4">
-                  <div className="row gallery">
-                    <div className="GaleryContainer">
-                      <div className="PostUserContainer">
-                        <span className= 'Title'>
-                          <h3>{e.title}</h3>
-                        </span>
-                        <img className='image' src={url + e.imagepath} />
-                        <div className="Buttons">
-                          <Button
-                            type="primary"
-                            onClick={() => {
-                              getId(e._id);
-                            }}
-                          >
-                            Editar Post
-                          </Button>
-                          <Button
-                            type="danger"
-                            onClick={() => {
-                              destroyPost(e._id);
-                            }}
-                          >
-                            Borrar Post
-                          </Button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+      <div className="MegaSuper" key={e._id}>
+        <div className="Super">
+          <div className="PostUserContainer">
+            <span className="Title">
+              <h3>{e.title}</h3>
+            </span>
+            <div className="ImageContainer">
+              <img className="Image" src={url + e.imagepath} alt='' />
             </div>
-          </main>
+            <div className="Buttons">
+              <Button
+                type="primary"
+                onClick={() => {
+                  getId(e._id);
+                }}
+              >
+                Editar Post
+              </Button>
+              <Button
+                type="danger"
+                onClick={() => {
+                  destroyPost(e._id);
+                }}
+              >
+                Borrar Post
+              </Button>
+            </div>
+          </div>
         </div>
-      </div>
       </div>
     );
   });

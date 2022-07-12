@@ -4,7 +4,9 @@ import postsService from "./postsService";
 const initialState = {
   posts: [],
   post: {},
-  info: []
+  info: [],
+  postToEdit:{},
+  newPost:{}
 };
 
 export const getAll = createAsyncThunk("post/getAll", async () => {
@@ -77,7 +79,6 @@ export const destroy = createAsyncThunk("posts/destroy", async (_id) => {
 });
 
 export const editPost = createAsyncThunk("posts/edit", async (values) => {
-  console.log(values)
   try {
     return await postsService.editPost(values);
   } catch (error) {
@@ -100,6 +101,9 @@ export const postsSlice = createSlice({
     reset: (state) => {
       state.isLoading = false;
     },
+    setPostToEdit: (state, action) =>{
+      state.postToEdit = action.payload
+    }
   },
   extraReducers: (builder) => {
     builder.addCase(getAll.fulfilled, (state, action) => {
@@ -113,10 +117,11 @@ export const postsSlice = createSlice({
     });
     builder
       .addCase(getPostByTitle.fulfilled, (state, action) => {
+        console.log(action.payload)
         state.posts = action.payload;
       })
       .addCase(createPost.fulfilled, (state, action) => {
-        state.posts = [action.payload, ...state.posts];
+        state.newPost = action.payload
       })
       .addCase(like.fulfilled, (state, action) => {
         const posts = state.posts.map((post) => {
@@ -142,7 +147,6 @@ export const postsSlice = createSlice({
     });
     builder
     .addCase(editPost.fulfilled, (state, action)=>{
-      console.log(action.payload)
       const posts = state.posts.map(post =>{
         if (post._id === action.payload.post._id){
           post = action.payload.post;
@@ -161,5 +165,5 @@ export const postsSlice = createSlice({
   },
 });
 
-export const { reset } = postsSlice.actions;
+export const { reset, setPostToEdit } = postsSlice.actions;
 export default postsSlice.reducer;

@@ -8,7 +8,6 @@ const url = "http://localhost:8080/users/";
 const { Search } = Input;
 const Header = () => {
   const { info } = useSelector((state) => state.auth);
-  console.log(info);
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const onSearch = (e) => {

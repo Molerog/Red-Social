@@ -42,7 +42,6 @@ const getUserInfo = async () => {
 
 const updateUsers = async (data) => {
   const user = JSON.parse(localStorage.getItem("user"));
-  console.log('soy el user sin actualizar', user.token)
   const res = await axios.put(API_URL + "/users/", data, {
     headers: {
       authorization: user.token,
@@ -52,38 +51,11 @@ const updateUsers = async (data) => {
     localStorage.setItem("userUpdated", JSON.stringify(res.data));
   }
  
-  // if (res.data) {
-  //   const info = localStorage.getItem('user')
-  //   localStorage.clear();
-  //   const localStorageObject = JSON.parse(info)
-  //   localStorageObject['data'] = res.data
-  //   localStorageObject['token'] = user.token
-  //   console.log("ESTO ES EL LOCALSTORAGEOBJECT", JSON.stringify(localStorageObject))
-  //   localStorage.setItem("user", JSON.stringify(localStorageObject));
-  // }
-
-    // localStorage.removeItem("user");
-    // localStorage.setItem("user", JSON.stringify(res.data,user.token));   
   
-  // localStorage.removeItem("user");
- 
-  // const tokenupdated = res.data
-  // data.push(user.token)
-  // console.log(tokenupdated)
-  console.log('soy el resdata',res.data)
   return res.data
 };
 
-// const getUsersById = async (_id) => {
-//   const user = JSON.parse(localStorage.getItem("user"));
-//   const res = await axios.get(API_URL + "/users/id/" + _id, {
-//     headers: {
-//       authorization: user.token,
-//     },
-//   });
- 
-//   return res.data;
-// };
+
 
 const authService = {
   register,

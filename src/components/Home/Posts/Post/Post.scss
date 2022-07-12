@@ -10,6 +10,7 @@
       .PostTopLeft {
         display: flex;
         align-items: center;
+        gap:1em;
         .PostProfileImg {
           width: 32px;
           height: 32px;
@@ -39,13 +40,28 @@
       .PostBottomLeft {
         display: flex;
         align-items: center;
-        gap:1em;
+        gap: 1em;
       }
       .postBottomRight {
         display: flex;
         align-items: center;
-        gap:1em;
+        gap: 1em;
       }
     }
+  }
+}
+
+.PostTitle{
+  display:flex;
+  justify-content: center;
+}
+
+.RightBar{
+  display:flex;
+  flex-direction: column;
+ border-left: 1px solid #ccc;
+  // justify-content: center;
+  .RightBarTitle{
+    margin-top: 1em;
   }
 }

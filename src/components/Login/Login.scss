@@ -7,17 +7,30 @@
     background-image: url("../Assets/Portada.jpg");
     flex: 1;
   }
-  .ModalLogin {
-    border: 2px solid red;
+  .ModalLogin{
     display: flex;
     align-items: center;
     justify-content: center;
     flex: 1;
+    .WrapperContainer{
+      padding:2em;
+      border:0;
+      box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    }
     .ant-form-horizontal {
+      padding:10px;
+      
+      border:0;
+      box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
       display: flex;
       flex-direction: column;
-      border: 2px solid purple;
+      // border: 2px solid purple;
       gap: 2em;
+    }
+    .TextContainer{
+      display:flex;
+      justify-content: space-evenly;
     }
   }
 }
+

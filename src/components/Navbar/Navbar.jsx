@@ -8,9 +8,8 @@ import CreatePost from "../CreatePost/CreatePost";
 const Navbar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { user, info } = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.auth);
 
-  console.log(info.name);
   const onLogout = (e) => {
     e.preventDefault();
     dispatch(logout());

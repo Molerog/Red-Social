@@ -11,12 +11,9 @@ const Profile = () => {
   const dispatch = useDispatch();
   const { user, info } = useSelector((state) => state.auth);
 
-
-  const posts = info.postIds
-  const followers = info.followers
-  const following = info.following
-
-  
+  const posts = info.postIds;
+  const followers = info.followers;
+  const following = info.following;
 
   useEffect(() => {
     dispatch(getUserInfo());
@@ -58,22 +55,15 @@ const Profile = () => {
                 </div>
               </div>
             </div>
-            <div className='ContainerButton'>
+            <div className="ContainerButton">
               <EditUser />
             </div>
           </main>
         </div>
-        {/* <div>
-          <h1>Profile</h1>
-          <img src={url + info?.imagepath} alt="" width="100px" />
-          <p>{info?.name}</p>
-          <p>{info?.email}</p>
-        </div>
-        <div> */}
+
         <UserLogged />
       </div>
     </div>
-    // </div>
   );
 };
 
