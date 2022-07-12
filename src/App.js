@@ -11,7 +11,7 @@ import Search from "./components/Search/Search";
 import Admin from "./components/Admin/Admin";
 import Users from "./components/Users/Users";
 import Header from "./components/Header/Header";
-
+import SearchUser from "./components/OtherUser/OtherUserDetail/SearchUser/SearchUser";
 
 function App() {
   return (
@@ -26,6 +26,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/posts/id/:_id" element={<PostDetailRender />} />
           <Route path="/search/:title" element={<Search />} />
+          <Route path="/search/users/:_id" element={<SearchUser />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/users" element={<Users />} />
         </Routes>

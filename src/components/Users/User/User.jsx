@@ -1,10 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Input } from "antd";
 import { Button, Card } from "antd";
 import {
   deleteUsers,
   follow,
+  getById,
   getUsers,
   getUsersByName,
   unfollow,
@@ -16,6 +18,7 @@ const url = "http://localhost:8080/users/";
 const { Search } = Input;
 
 const User = () => {
+  const navigate = useNavigate();
   const admin = window.location.pathname.includes("admin");
   const [data, setData] = useState("");
   const { user } = useSelector((state) => state.auth);
@@ -28,6 +31,10 @@ const User = () => {
 
   const destroyPost = (value) => {
     dispatch(deleteUsers(value));
+  };
+
+  const onSearch = (_id) => {
+    navigate("/search/users/" + _id);
   };
 
   useEffect(() => {
@@ -99,6 +106,7 @@ const User = () => {
                   Seguir
                 </Button>
               )}
+              <Button  type="primary" onClick={()=> onSearch(element._id)}>Primary Button</Button>
               {user.user?.role === "admin" && admin ? (
                 <Button
                   type="danger"
