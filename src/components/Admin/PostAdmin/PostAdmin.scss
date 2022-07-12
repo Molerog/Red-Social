@@ -1,0 +1,55 @@
+.PostMapContainer {
+//   border: 2px solid red;
+  display: flex;
+  width: 100%;
+  min-height: 50vh;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  margin: 30px 0;
+  padding:2em;
+  .Wrapper {
+    display: flex;
+    // border: 2px solid blue;
+    flex-basis: 80%;
+    .TitleImgContainer {
+        flex:2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    //   border: 2px solid green;
+      .Title {
+       
+      }
+    }
+    .RightContainer {
+      display: flex;
+      flex:2;
+      justify-content: space-evenly;
+      flex-direction: column;
+      align-items: center;
+    //   border: 2px solid purple;
+      flex-basis: 50%;
+      font-size: 2em;
+
+      // align-self:stretch
+      .NameContainer {
+        display: flex;
+      }
+    }
+  }
+}
+.ImgContainer{
+    display:flex;
+    align-items: center;
+    // border:2px solid black;
+    flex:1;
+    justify-content: center;
+
+
+    .Avatar{
+        width:10em;
+        height:10em;
+        border-radius: 50%;
+    }
+}

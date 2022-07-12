@@ -52,7 +52,8 @@ const EditPost = () => {
   const editButton = info?.postIds?.map((e) => {
     console.log(e.imagepath);
     return (
-      <div key={e._id}>
+      <div className='MegaSuper'>
+      <div className='Super' key={e._id}>
         <div class="PostContainer">
           <main>
             <div className="BottomContainer">
@@ -64,7 +65,7 @@ const EditPost = () => {
                         <span className= 'Title'>
                           <h3>{e.title}</h3>
                         </span>
-                        <img src={url + e.imagepath} />
+                        <img className='image' src={url + e.imagepath} />
                         <div className="Buttons">
                           <Button
                             type="primary"
@@ -91,6 +92,7 @@ const EditPost = () => {
             </div>
           </main>
         </div>
+      </div>
       </div>
     );
   });

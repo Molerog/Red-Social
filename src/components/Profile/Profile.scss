@@ -3,6 +3,8 @@
   .UserContainer {
     flex: 7;
     margin-right: 3em;
+    display:flex;
+    flex-wrap: wrap;
   }
 }
 .ContainerButton {
