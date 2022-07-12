@@ -79,10 +79,9 @@ const PostDetail = () => {
   };
 
   const commentUser = post.comments?.map((element) => {
-    console.log(element)
     const isAlreadyLiked = element.likes?.includes(user?.user._id);
     return (
-      <div key={element._id}>
+      <div className= 'animate__animated animate__fadeIn'key={element._id}>
         <Comment
           author={<a>{element.userId?.name}</a>}
           avatar={

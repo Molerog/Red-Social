@@ -1,10 +1,10 @@
-import React from 'react'
-import './OtherUser.scss'
+// import React from 'react'
+// import './OtherUser.scss'
 
-const OtherUser = () => {
-  return (
-    <div>OtherUser</div>
-  )
-}
+// const OtherUser = () => {
+//   return (
+//     <div>OtherUser</div>
+//   )
+// }
 
-export default OtherUser
+// export default OtherUser

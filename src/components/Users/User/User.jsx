@@ -106,7 +106,7 @@ const User = () => {
                   Seguir
                 </Button>
               )}
-              <Button  type="primary" onClick={()=> onSearch(element._id)}>Primary Button</Button>
+              <Button  type="primary" onClick={()=> onSearch(element._id)}>Ver Perfil</Button>
               {user.user?.role === "admin" && admin ? (
                 <Button
                   type="danger"

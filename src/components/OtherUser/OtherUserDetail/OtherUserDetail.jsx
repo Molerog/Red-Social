@@ -2,21 +2,23 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getUserInfo } from "../../../features/auth/authSlice";
 import Navbar from "../../Navbar/Navbar";
-import EditUser from "../../EditUser/EditUser";
-import './OtherUserDetail.scss'
+import "./OtherUserDetail.scss";
 
 const url = "http://localhost:8080/users/";
+const url2 = "http://localhost:8080/posts/";
 
 const OtherUserDetail = () => {
   const dispatch = useDispatch();
-  const { user, info } = useSelector((state) => state.auth);
-  const {user: userProfile} = useSelector((state)=> state.users)
+  const { user } = useSelector((state) => state.auth);
+  const { user: userProfile } = useSelector((state) => state.users);
 
   const posts = userProfile.postIds;
   const followers = userProfile.followers;
   const following = userProfile.following;
 
-  console.log(userProfile)
+
+
+  console.log(userProfile);
 
   useEffect(() => {
     dispatch(getUserInfo());
@@ -25,6 +27,25 @@ const OtherUserDetail = () => {
   if (!user) {
     return <>Cargando Perfil...</>;
   }
+  const postInfo = userProfile?.postIds?.map(e =>{
+    console.log(e.title)
+    return(<div className="BottomContainer">
+    <div className="row">
+      <div className="left col-lg-4">
+        <div className="row gallery">
+          <div className="GaleryContainer">
+            <div className="PostUserContainer">
+              <span className="Title">
+                <h3>{e?.title}</h3>
+              </span>
+              <img className="image" src={url2 + e?.imagepath} alt=''/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>)
+  })
   return (
     <div className="ProfileContainer">
       <Navbar />
@@ -37,11 +58,15 @@ const OtherUserDetail = () => {
             <div className="row">
               <div className="left col-lg-4">
                 <div className="photo-left">
-                  <img className="photo" src={url + userProfile?.imagepath} alt="" />
+                  <img
+                    className="photo"
+                    src={url + userProfile?.imagepath}
+                    alt=""
+                  />
                 </div>
                 <h4 className="name">{userProfile?.name}</h4>
                 <p className="info">UI/UX Designer</p>
-                <p className="info">{userProfile.email}</p>
+                <p className="info">{userProfile?.email}</p>
                 <div className="stats row">
                   <div className="stat col-xs-4">
                     <p className="number-stat">{followers?.length}</p>
@@ -58,21 +83,11 @@ const OtherUserDetail = () => {
                 </div>
               </div>
             </div>
-            <div className="ContainerButton">
-              <EditUser />
-            </div>
+            {postInfo}
           </main>
         </div>
-        {/* <div>
-              <h1>Profile</h1>
-              <img src={url + info?.imagepath} alt="" width="100px" />
-              <p>{info?.name}</p>
-              <p>{info?.email}</p>
-            </div>
-            <div> */}
       </div>
     </div>
-    // </div>
   );
 };
 
