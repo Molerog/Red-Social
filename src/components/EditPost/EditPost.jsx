@@ -7,6 +7,7 @@ import {
   setPostToEdit,
 } from "../../features/posts/postsSlice";
 import "./EditPost.scss";
+import { Link } from "react-router-dom";
 
 const layout = {
   labelCol: {
@@ -26,17 +27,18 @@ const validateMessages = {
 const EditPost = () => {
   const [form] = Form.useForm();
   const [visible, setVisible] = useState(false);
-  const { info, post, postToEdit } = useSelector((state) => state.posts);
+  const { info, postToEdit } = useSelector((state) => state.posts);
 
   const getId = (_id) => {
     const superPost = info.postIds.filter((e) => e._id === _id)[0];
+    console.log(superPost);
     dispatch(setPostToEdit(superPost));
     setVisible(true);
   };
 
   const onFinish = async (values) => {
     if (values != null) {
-      const data = { ...values, _id: post._id };
+      const data = { ...values, _id: postToEdit._id };
       setVisible(false);
       await dispatch(editPost(data));
     }
@@ -61,7 +63,9 @@ const EditPost = () => {
               <h3>{e.title}</h3>
             </span>
             <div className="ImageContainer">
-              <img className="Image" src={url + e.imagepath} alt='' />
+              <Link className="CenterImage" to={"/posts/id/" + e._id}>
+                <img className="Image" src={url + e.imagepath} alt="" />
+              </Link>
             </div>
             <div className="Buttons">
               <Button
@@ -104,7 +108,7 @@ const EditPost = () => {
           form={form}
         >
           <Form.Item
-            name={"title"}
+            name="title"
             label="Título"
             placeholder="hola"
             rules={[
@@ -115,22 +119,26 @@ const EditPost = () => {
           >
             <Input />
           </Form.Item>
-          <Form.Item
-            name={["body"]}
-            label="Texto del post"
-            rules={[
-              {
-                required: true,
-              },
-            ]}
-          >
-            <Input.TextArea />
-          </Form.Item>
-          <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
-            <Button type="primary" htmlType="submit">
-              Ok
-            </Button>
-          </Form.Item>
+          <div className="FormAndButton">
+            <Form.Item
+              name="body"
+              label="Texto del post"
+              rules={[
+                {
+                  required: true,
+                },
+              ]}
+            >
+              <Input.TextArea style={{ width: 500, height: 300 }} />
+            </Form.Item>
+            <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
+              <div className="Button">
+                <Button type="primary" htmlType="submit">
+                  Ok
+                </Button>
+              </div>
+            </Form.Item>
+          </div>
         </Form>
       </Modal>
     </>

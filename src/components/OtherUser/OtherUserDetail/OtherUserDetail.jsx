@@ -24,7 +24,7 @@ const OtherUserDetail = () => {
     return <>Cargando Perfil...</>;
   }
   const postInfo = userProfile?.postIds?.map((e) => {
-    console.log(e._id);
+    
     return (
       <div className="MegaSuper" >
         <div className="Super" key={e._id}>

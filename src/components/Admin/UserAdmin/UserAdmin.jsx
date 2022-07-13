@@ -2,7 +2,7 @@ import User from "../../Users/User/User"
 
 const UserAdmin = () => {
   return (
-    <div><User /></div>
+    <div><User/></div>
   )
 }
 

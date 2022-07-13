@@ -1,3 +1,5 @@
+
+
 .GlobalContainer {
   display: flex;
   height: 100vh;
@@ -27,10 +29,15 @@
       // border: 2px solid purple;
       gap: 2em;
     }
-    .TextContainer{
+    .textContainer{
       display:flex;
       justify-content: space-evenly;
+    
     }
   }
+}
+
+.TextContainer a{
+  color: blue;
 }
 

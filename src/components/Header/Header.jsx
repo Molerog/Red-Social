@@ -1,4 +1,4 @@
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { Input } from "antd";
 import "./Header.scss";
 import { useSelector } from "react-redux";
@@ -49,7 +49,9 @@ const Header = () => {
           </div>
           <div className="TopBarIcons">
             <div className="TopBarIconItem">
-              <img className="TopBarImg" src={url + info?.imagepath}></img>
+              <Link to='/profile'>
+              <img className="TopBarImg" src={url + info?.imagepath} alt= ''></img>
+              </Link>
               <span className="TopBarIconBadge"></span>
             </div>
           </div>

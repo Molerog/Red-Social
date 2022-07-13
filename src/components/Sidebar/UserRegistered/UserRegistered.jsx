@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { Button } from "antd";
 import { follow, getUsers, unfollow } from "../../../features/users/usersSlice";
 import "./UserRegistered.scss";
+import { Link } from "react-router-dom";
 const User = () => {
   const url = "http://localhost:8080/users/";
   const { user } = useSelector((state) => state.auth);
@@ -22,17 +23,17 @@ const User = () => {
           <ul className="RightBarUserList" key={element._id}>
             <li className="RightBarUser">
               <div className="RightProfileImgContainer">
-                <img
-                  className="RightBarProfileImg"
-                  src={url + element?.imagepath}
-                  alt=""
-                />
-
+                <Link to={"/search/users/" + element._id}>
+                  <img
+                    className="RightBarProfileImg"
+                    src={url + element?.imagepath}
+                    alt=""
+                  />
+                </Link>
                 <span className="RightBarOnline"></span>
               </div>
               <span className="RightBarUserName">{element.name}</span>
             </li>
-
             {isAlreadyFollowed ? (
               <Button
                 type="danger"
@@ -40,7 +41,7 @@ const User = () => {
               >
                 Dejar de seguir
               </Button>
-            ) : (
+            ) :  (
               <Button
                 type="primary"
                 onClick={() => dispatch(follow(element._id))}

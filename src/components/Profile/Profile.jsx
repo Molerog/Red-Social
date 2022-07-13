@@ -5,6 +5,7 @@ import { getUserInfo } from "../../features/auth/authSlice";
 import "./Profile.scss";
 import Navbar from "../Navbar/Navbar";
 import EditUser from "../../components/EditUser/EditUser";
+
 const url = "http://localhost:8080/users/";
 
 const Profile = () => {

@@ -21,7 +21,7 @@ const Posts = () => {
     getPostsAndReset();
   }, [newPost]);
 
-console.log('hola')
+
 
 
   if (isLoading) {

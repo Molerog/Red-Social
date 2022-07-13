@@ -19,6 +19,8 @@ const validateMessages = {
   required: "${label} es requerido",
 };
 
+const url = "http://localhost:8080/users/"
+
 const Editor = ({ onChange, onSubmit, submitting, value }) => (
   <>
     <Form validateMessages={validateMessages}>
@@ -39,12 +41,13 @@ const Editor = ({ onChange, onSubmit, submitting, value }) => (
   </>
 );
 
+
 const PostDetail = () => {
   const { _id } = useParams();
   const dispatch = useDispatch();
   const { comments } = useSelector((state) => state.comments);
   const { post } = useSelector((state) => state.posts);
-  const { user } = useSelector((state) => state.auth);
+  const { user, info } = useSelector((state) => state.auth);
   const [comment, setComment] = useState([]);
   const [submitting, setSubmitting] = useState(false);
   const [value, setValue] = useState("");
@@ -61,15 +64,15 @@ const PostDetail = () => {
         ...comment,
         {
           author: post.userId.name,
-          avatar: 'http://localhost:8080/users/'+ post.imagepath,
+          avatar: url+ info.imagepath,
           content: <p>{value}</p>,
-          datetime: moment().fromNow(),
         },
       ]);
     }, 1000);
   };
 
-  const url = "http://localhost:8080/users/"
+
+
 
   
 
@@ -80,6 +83,7 @@ const PostDetail = () => {
   const commentUser = post.comments?.map((element) => {
     const isAlreadyLiked = element.likes?.includes(user?.user._id);
     return (
+      <>
       <div className= 'animate__animated animate__fadeIn'key={element._id}>
         <Comment
           author={<a>{element.userId?.name}</a>}
@@ -95,6 +99,8 @@ const PostDetail = () => {
         )}
         {element.likes?.length} personas dieron like
       </div>
+      <hr></hr>
+      </>
     );
   });
 
@@ -118,7 +124,7 @@ const PostDetail = () => {
         <div>
           <Comment
             avatar={
-              <Avatar src={url+user?.user?.imagepath} alt="alt" />
+              <Avatar src={url + info.imagepath} alt="alt" />
             }
             content={
               <Editor

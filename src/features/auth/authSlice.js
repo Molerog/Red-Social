@@ -97,6 +97,7 @@ export const authSlice = createSlice({
       })
      
       .addCase(updateUsers.fulfilled, (state, action) => {
+        console.log(action.payload)
         state.userUpdated = action.payload;
       })
    

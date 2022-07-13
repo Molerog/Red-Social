@@ -34,13 +34,15 @@ const PostAdmin = () => {
               <span className="Role">{post.userId?.role}</span>
             </div>
             <br />
-            <Button type="danger" onClick={() => dispatch(destroy(post._id))}>
+            <Button style={{width:500, height:60}}type="danger" onClick={() => dispatch(destroy(post._id))}>
               Eliminar Post
             </Button>
           </div>
         </div>
         <div className="ImgContainer">
+        <Link to={"/profile"}>
           <img className='Avatar' alt='' src= {url2 + post?.userId?.imagepath}></img>
+       </Link>
         </div>
       </div>
     );

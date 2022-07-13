@@ -34,7 +34,20 @@
     width:300px;
 }
 
-.ButtonsContainer{
+.avatar-name img{
+        // width: 50%;
+        // height: 50%;
+        border-radius: 50%;
+        object-fit: cover;
+}
+
+.avatar-name{
   display:flex;
-  gap:2em;
+  align-items: top;
+  margin-bottom: 2em;
+}
+
+.ant-card-head{
+  display:flex;
+  align-items: center;
 }

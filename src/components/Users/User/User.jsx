@@ -2,14 +2,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Input } from "antd";
-import { Button, Card } from "antd";
+import { Button, Card, Space } from "antd";
 import {
-  UserOutlined ,
-  SendOutlined ,
+  UserOutlined,
+  SendOutlined,
   NotificationOutlined,
   UsergroupAddOutlined,
-  SearchOutlined   
-} from '@ant-design/icons';
+  SearchOutlined,
+} from "@ant-design/icons";
 import {
   deleteUsers,
   follow,
@@ -55,7 +55,7 @@ const User = () => {
   const allUsers = users?.map((element) => {
     const isAlreadyFollowed = element.followers?.includes(user?.user?._id);
     return (
-      <div className="WraperContainer" key={element._id}>
+      <div className="WraperContainer" key={element?._id}>
         <Card className="Cards " hoverable="true" style={{ width: 400 }}>
           <div className="avatar-name">
             <img
@@ -68,60 +68,61 @@ const User = () => {
           <div className="Grid">
             <div className="Container">
               <li className="Usuario">
-              <UserOutlined /> Nombre de usuario:<h3>{element.name}</h3>
+                <UserOutlined /> Nombre de usuario:<h3>{element.name}</h3>
               </li>
             </div>
             <div className="Container">
               <li className="Email">
-              <SendOutlined /> Email de usuario:<h4>{element.email}</h4>
+                <SendOutlined /> Email de usuario:<h4>{element.email}</h4>
               </li>
             </div>
             <div className="Container">
               <li className="Rol">
-              <NotificationOutlined /> Role de usuario:<h4>{element.role}</h4>
+                <NotificationOutlined /> Role de usuario:<h4>{element.role}</h4>
               </li>
             </div>
             <div className="Container">
               <li className="Followers">
-              <UsergroupAddOutlined /> Followers:<h4>{element.followers.length}</h4>
+                <UsergroupAddOutlined /> Followers:
+                <h4>{element.followers.length}</h4>
               </li>
             </div>
             <div className="Container">
               <li className="Following">
-              <SearchOutlined /> Following:<h4>{element.following.length}</h4>
+                <SearchOutlined /> Following:<h4>{element.following.length}</h4>
               </li>
-            </div>          
+            </div>
+
+            <Space>
               {isAlreadyFollowed ? (
                 <Button
                   type="danger"
-                onClick={() => dispatch(unfollow(element._id))}
+                  onClick={() => dispatch(unfollow(element?._id))}
                 >
-                  
                   Dejar de seguir
                 </Button>
-              
               ) : (
                 <Button
                   type="primary"
-                  onClick={() => dispatch(follow(element._id))}
+                  onClick={() => dispatch(follow(element?._id))}
                 >
                   Seguir
                 </Button>
               )}
-              <Button type="primary" onClick={() => onSearch(element._id)}>
+              <Button type="primary" onClick={() => onSearch(element?._id)}>
                 Ver Perfil
               </Button>
               {user.user?.role === "admin" && admin ? (
                 <Button
                   type="danger"
                   onClick={() => {
-                    destroyPost(element._id);
+                    destroyPost(element?._id);
                   }}
                 >
                   Eliminar Usuario
                 </Button>
               ) : null}
-           
+            </Space>
           </div>
         </Card>
       </div>

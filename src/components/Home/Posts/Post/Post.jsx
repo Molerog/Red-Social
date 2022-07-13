@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { HeartOutlined, HeartFilled, CommentOutlined } from "@ant-design/icons";
-import { dislike, getAll, like} from "../../../../features/posts/postsSlice";
+import { dislike, getAll, like } from "../../../../features/posts/postsSlice";
 import { useEffect } from "react";
 import "../Post/Post.scss";
 
@@ -31,6 +31,7 @@ const Post = () => {
                 <h2 className="PostTitle">{post.title}</h2>
 
                 <img
+             
                   className="PostImage"
                   src={urlPost + post.imagepath}
                   alt=""
@@ -40,14 +41,21 @@ const Post = () => {
             <div className="PostBottom">
               <div className="PostBottomLeft">
                 {isAlreadyLiked ? (
-                  <HeartFilled style={{fontSize: '25px', color: '#f5222d'}} onClick={() => dispatch(dislike(post._id))} />
-                  ) : (
-                    <HeartOutlined style={{ fontSize: '25px', color: '#f5222d' }} theme="outlined" onClick={() => dispatch(like(post._id))} />
-                    )}
-                    {post.likes?.length} personas dieron like
+                  <HeartFilled
+                    style={{ fontSize: "25px", color: "#f5222d" }}
+                    onClick={() => dispatch(dislike(post._id))}
+                  />
+                ) : (
+                  <HeartOutlined
+                    style={{ fontSize: "25px", color: "#f5222d" }}
+                    theme="outlined"
+                    onClick={() => dispatch(like(post._id))}
+                  />
+                )}
+                {post.likes?.length} personas dieron like
               </div>
               <div className="postBottomRight">
-                <CommentOutlined style={{fontSize: '25px', color: ''}} />
+                <CommentOutlined style={{ fontSize: "25px", color: "" }} />
                 {post.comments?.length} comentarios en este post
               </div>
             </div>
@@ -56,9 +64,7 @@ const Post = () => {
       </div>
     );
   });
-  return (
-      <div>{post}</div>
-  );
+  return <div>{post}</div>;
 };
 
 export default Post;
