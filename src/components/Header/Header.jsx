@@ -34,23 +34,16 @@ const Header = () => {
         </div>
         <div className="TopBarRight">
           <div className="TopBarLink">Homepage</div>
-          <div className="TopBarLink">Timeline</div>        
-          <div>
-            <div className="TopBarIconItem">
-              <span>Algo</span>
-              <span className="TopBarIconBadge">2</span>
-            </div>
-          </div>
-          <div>
-            <div className="TopBarIconItem">
-              <span>Algo</span>
-              <span className="TopBarIconBadge">3</span>
-            </div>
-          </div>
+          <div className="TopBarLink">Timeline</div>
+          <div></div>
           <div className="TopBarIcons">
             <div className="TopBarIconItem">
-              <Link to='/profile'>
-              <img className="TopBarImg" src={url + info?.imagepath} alt= ''></img>
+              <Link to="/profile">
+                <img
+                  className="TopBarImg"
+                  src={url + info?.imagepath}
+                  alt=""
+                ></img>
               </Link>
               <span className="TopBarIconBadge"></span>
             </div>

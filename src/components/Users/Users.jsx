@@ -21,7 +21,9 @@ const Users = () => {
   return (
     <div className="GeneralContainer">
       <Navbar />
+      <div className= 'animate__animated animate__fadeInRight'>
       <User />
+      </div>
     </div>
   );
 };

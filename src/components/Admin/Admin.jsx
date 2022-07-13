@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { UserOutlined, FolderOutlined } from "@ant-design/icons";
 import { Tabs } from "antd";
 import { getAll, reset } from "../../features/posts/postsSlice";
@@ -12,7 +12,6 @@ import { getUserInfo } from "../../features/auth/authSlice";
 const { TabPane } = Tabs;
 
 const Admin = () => {
-  const { isLoading } = useSelector((state) => state.posts);
   const dispatch = useDispatch();
 
   const getPostsAndReset = async () => {
@@ -24,9 +23,7 @@ const Admin = () => {
     getPostsAndReset();
     dispatch(getUserInfo())
   }, []);
-  if (isLoading) {
-    return <h1>Cargando posts...</h1>;
-  }
+ 
 
   return (
     <div className="MainContainer">

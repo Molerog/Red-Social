@@ -2,7 +2,7 @@ import User from "../../Users/User/User"
 
 const UserAdmin = () => {
   return (
-    <div><User/></div>
+    <div className= 'animate__animated animate__lightSpeedInRight'><User/></div>
   )
 }
 

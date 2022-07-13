@@ -26,12 +26,11 @@ const Profile = () => {
   return (
     <div className="ProfileContainer">
       <Navbar />
-      <div className="UserContainer">
-        <div className="WrapperContainerCard ">
-          <header>
-            <i className="fa fa-bars" aria-hidden="true"></i>
-          </header>
-          <main>
+        <div className="UserContainer">
+          <div className="WrapperContainerCard ">
+            <header>
+              <i className="fa fa-bars" aria-hidden="true"></i>
+            </header>
             <div className="row">
               <div className="left col-lg-4">
                 <div className="photo-left">
@@ -59,12 +58,11 @@ const Profile = () => {
             <div className="ContainerButton">
               <EditUser />
             </div>
-          </main>
-        </div>
+          </div>
 
-        <UserLogged />
+          <UserLogged />
+        </div>
       </div>
-    </div>
   );
 };
 
