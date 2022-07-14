@@ -47,6 +47,7 @@ export const createPost = createAsyncThunk("posts/createPost", async (data) => {
 });
 
 export const getInfo = createAsyncThunk('auth/info', async ()=>{
+  console.log('hola')
   try {
       return await postsService.getInfo();
   } catch (error) {

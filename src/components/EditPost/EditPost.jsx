@@ -4,6 +4,7 @@ import { Button, Modal, Form, Input } from "antd";
 import {
   destroy,
   editPost,
+  getInfo,
   setPostToEdit,
 } from "../../features/posts/postsSlice";
 import "./EditPost.scss";
@@ -31,9 +32,12 @@ const EditPost = () => {
 
   const getId = (_id) => {
     const superPost = info.postIds.filter((e) => e._id === _id)[0];
-    console.log(superPost);
     dispatch(setPostToEdit(superPost));
     setVisible(true);
+  };
+
+  const getChange = async () => {
+    dispatch(getInfo());
   };
 
   const onFinish = async (values) => {
@@ -49,7 +53,6 @@ const EditPost = () => {
   }, [postToEdit]);
 
   const dispatch = useDispatch();
-
   const destroyPost = (value) => {
     dispatch(destroy(value));
   };
@@ -133,7 +136,11 @@ const EditPost = () => {
             </Form.Item>
             <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
               <div className="Button">
-                <Button type="primary" htmlType="submit">
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  onClick={() => getChange()}
+                >
                   Ok
                 </Button>
               </div>

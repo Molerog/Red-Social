@@ -6,7 +6,7 @@
   align-items: center;
   position: sticky;
   top: 0;
-  z-index:2;
+  z-index: 2;
   .TopBarLeft {
     flex: 3;
     .Logo {
@@ -60,4 +60,10 @@
       }
     }
   }
+}
+
+.copyright {
+  text-align: center;
+  font-size: 13px;
+  margin-bottom: 0;
 }

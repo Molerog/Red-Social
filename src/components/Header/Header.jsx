@@ -18,7 +18,7 @@ const Header = () => {
     <>
       <div className="TopBarContainer">
         <div className="TopBarLeft">
-          <span className="Logo">LOGO</span>
+          <span className="Logo">GAMING SOCIAL</span>
         </div>
         <div className="TopBarCenter">
           <Search
@@ -33,9 +33,7 @@ const Header = () => {
           />
         </div>
         <div className="TopBarRight">
-          <div className="TopBarLink">Homepage</div>
-          <div className="TopBarLink">Timeline</div>
-          <div></div>
+        <p className="copyright">Gaming Social © 2022</p>         
           <div className="TopBarIcons">
             <div className="TopBarIconItem">
               <Link to="/profile">
