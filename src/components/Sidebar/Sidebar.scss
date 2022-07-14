@@ -2,7 +2,7 @@
   flex: 2;
   font-size: 25px;
   border-bottom: 1px solid;
-  
+
   .RightBarTitle {
     margin-bottom: 20px;
     display: flex;
@@ -11,11 +11,10 @@
   .Scroll {
     overflow-y: scroll;
     height: 700px;
-    padding:10px;
-      
-    border:0;
-    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    padding: 10px;
+
+    border: 0;
+    box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
     // background-color: aliceblue;
-   
   }
 }
