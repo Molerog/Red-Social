@@ -47,7 +47,7 @@ export const createPost = createAsyncThunk("posts/createPost", async (data) => {
 });
 
 export const getInfo = createAsyncThunk('auth/info', async ()=>{
-  console.log('hola')
+
   try {
       return await postsService.getInfo();
   } catch (error) {
@@ -80,7 +80,7 @@ export const destroy = createAsyncThunk("posts/destroy", async (_id) => {
 });
 
 export const editPost = createAsyncThunk("posts/edit", async (values) => {
-  console.log(values)
+
   try {
     return await postsService.editPost(values);
   } catch (error) {
@@ -104,7 +104,6 @@ export const postsSlice = createSlice({
       state.isLoading = false;
     },
     setPostToEdit: (state, action) =>{
-      console.log(action.payload)
       state.postToEdit = action.payload
     }
   },
@@ -120,7 +119,6 @@ export const postsSlice = createSlice({
     });
     builder
       .addCase(getPostByTitle.fulfilled, (state, action) => {
-        console.log(action.payload)
         state.posts = action.payload;
       })
       .addCase(createPost.fulfilled, (state, action) => {
@@ -155,7 +153,6 @@ export const postsSlice = createSlice({
           post = action.payload.post;
          
         }
-        console.log(posts)
         return post
       })
       state.posts = posts
